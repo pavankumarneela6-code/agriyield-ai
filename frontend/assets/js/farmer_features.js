@@ -1,5 +1,5 @@
 (() => {
-  const API = "http://127.0.0.1:8000/api/features";
+const API = "https://agriyield-ai-1-vqo7.onrender.com/api/features";
   const $ = (id) => document.getElementById(id);
   const safe = (value) => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
   async function request(url, options={}) {
@@ -300,7 +300,7 @@ async function initHistory() {
 
   try {
     const d = await request(
-      `http://127.0.0.1:8000/api/features/history?user_id=${encodeURIComponent(user.id)}`
+      `${API}/history?user_id=${encodeURIComponent(user.id)}`
     );
 
     const records = d.history || [];

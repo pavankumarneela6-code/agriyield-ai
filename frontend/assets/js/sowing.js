@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function sowingApi(path, options = {}) {
     const response = await fetch(
-        `http://127.0.0.1:8000/api/sowing${path}`,
+       `https://agriyield-ai-1-vqo7.onrender.com/api/sowing${path}`,
         {
             ...options,
             headers: {

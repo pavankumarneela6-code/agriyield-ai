@@ -3,7 +3,7 @@
   const status = document.getElementById("chart-status");
   if (!chart || !status) return;
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  fetch("http://127.0.0.1:8000/api/history")
+fetch("https://agriyield-ai-1-vqo7.onrender.com/api/history")
     .then(r => { if (!r.ok) throw new Error("History API unavailable"); return r.json(); })
     .then(data => {
       const rows = Array.isArray(data) ? data : (data.history || []);

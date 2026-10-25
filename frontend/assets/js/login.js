@@ -1,5 +1,5 @@
 
-const API_BASE = "http://127.0.0.1:8000/api/auth";
+const API_BASE = "https://agriyield-ai-1-vqo7.onrender.com/api/auth";
 
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");

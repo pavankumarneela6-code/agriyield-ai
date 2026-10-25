@@ -91,7 +91,7 @@ const saveButton = form.querySelector('[type="submit"]');
 if (saveButton) saveButton.disabled = true;
 
 try {
-  const response = await fetch("http://127.0.0.1:8000/api/profit/records", {
+  const response = await fetch("https://agriyield-ai-1-vqo7.onrender.com/api/profit/records", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -144,7 +144,7 @@ try {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/profit/records?limit=50"
+        "https://agriyield-ai-1-vqo7.onrender.com/api/profit/records?limit=50"
       );
       const data = await response.json();
 
