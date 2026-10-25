@@ -13,3 +13,4 @@ openai
 email-validator
 aiosmtplib
 PyJWT
+pwdlib[argon2]
