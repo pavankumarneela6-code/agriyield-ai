@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Historical Weather Analysis | El Niño AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        body {
+            margin: 0;
+            background: #07111f;
+            color: #eaf2ff;
+            font-family: Arial, sans-serif;
+        }
+
+        .history-page {
+            max-width: 1400px;
+            margin: auto;
+            padding: 24px;
+        }
+
+        .history-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding: 16px 0 24px;
+            border-bottom: 1px solid #23364c;
+        }
+
+        .history-brand {
+            color: #ffffff;
+            font-size: 23px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .history-brand span {
+            color: #25d9b0;
+        }
+
+        .history-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .history-actions a,
+        .history-actions select {
+            color: #eaf2ff;
+            background: #122237;
+            border: 1px solid #30465f;
+            padding: 10px 14px;
+            border-radius: 9px;
+            text-decoration: none;
+        }
+
+        .history-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 32px 0 24px;
+        }
+
+        .history-eyebrow {
+            color: #25d9b0;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .history-hero h1 {
+            margin: 10px 0;
+            font-size: clamp(26px, 4vw, 38px);
+            color: #ffffff;
+        }
+
+        .history-hero p,
+        .history-muted {
+            color: #9fb0c5;
+            line-height: 1.6;
+        }
+
+        .history-source-badge {
+            border: 1px solid #245b53;
+            background: #102c2b;
+            color: #64e5c2;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+
+        .history-panel,
+        .history-metric,
+        .history-chart-card {
+            background: #0d1b2a;
+            border: 1px solid #22374c;
+            border-radius: 16px;
+        }
+
+        .history-panel {
+            padding: 22px;
+        }
+
+        .history-filters {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(160px, 1fr)) auto;
+            gap: 16px;
+            align-items: end;
+        }
+
+        .history-field label {
+            display: block;
+            color: #b9c9dc;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .history-field select,
+        .history-field input {
+            width: 100%;
+            box-sizing: border-box;
+            background: #091523;
+            color: #ffffff;
+            border: 1px solid #334a61;
+            border-radius: 9px;
+            padding: 12px;
+            min-height: 44px;
+        }
+
+        .history-field select option {
+            background: #091523;
+            color: #ffffff;
+        }
+
+        .history-button {
+            border: none;
+            border-radius: 9px;
+            background: #25d9b0;
+            color: #06151b;
+            padding: 13px 19px;
+            min-height: 44px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .history-button:disabled {
+            opacity: 0.55;
+            cursor: wait;
+        }
+
+        .history-message {
+            padding: 12px 15px;
+            margin: 16px 0 22px;
+            border-radius: 9px;
+            background: #102237;
+            color: #b9c9dc;
+            line-height: 1.5;
+        }
+
+        .history-message.error {
+            background: #351b24;
+            color: #ffb4bf;
+        }
+
+        .history-message.success {
+            background: #102c2b;
+            color: #64e5c2;
+        }
+
+        .history-metrics {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(130px, 1fr));
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .history-metric {
+            padding: 20px;
+        }
+
+        .history-metric-label {
+            color: #9fb0c5;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .history-metric-value {
+            font-size: 27px;
+            font-weight: bold;
+            color: #ffffff;
+            overflow-wrap: anywhere;
+        }
+
+        .history-metric-unit {
+            color: #25d9b0;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .history-charts {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .history-chart-card {
+            padding: 22px;
+            min-width: 0;
+        }
+
+        .history-chart-card h2 {
+            color: #ffffff;
+            font-size: 17px;
+            margin: 0 0 20px;
+        }
+
+        .history-chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        .history-disclaimer {
+            margin-top: 22px;
+            padding: 18px;
+            color: #9fb0c5;
+            border: 1px solid #22374c;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 1050px) {
+            .history-metrics {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .history-filters {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .history-page {
+                padding: 16px;
+            }
+
+            .history-filters,
+            .history-metrics,
+            .history-charts {
+                grid-template-columns: 1fr;
+            }
+
+            .history-chart-container {
+                height: 260px;
+            }
+
+            .history-hero {
+                padding-top: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="history-page">
+
+    <header class="history-topbar">
+        <a class="history-brand" href="dashboard.html">
+            El Niño <span>AI</span>
+        </a>
+
+        <div class="history-actions">
+            <a href="dashboard.html" data-page-i18n="backDashboard">
+                ← Dashboard
+            </a>
+
+            <select id="languageSelect" aria-label="Choose language">
+                <option value="en">English</option>
+                <option value="te">తెలుగు</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="history-hero">
+            <div>
+                <div class="history-eyebrow"
+                     data-page-i18n="pageEyebrow">
+                    HISTORICAL CLIMATE DATA
+                </div>
+
+                <h1 data-page-i18n="pageHeading">
+                    Historical Weather Analysis
+                </h1>
+
+                <p data-page-i18n="pageDescription">
+                    Explore actual historical weather records retrieved
+                    from Open-Meteo and stored in PostgreSQL.
+                </p>
+            </div>
+
+            <div class="history-source-badge"
+                 data-page-i18n="sourceBadge">
+                ● Real historical data
+            </div>
+        </section>
+
+        <section class="history-panel">
+
+            <form id="historicalFilterForm" class="history-filters">
+
+                <div class="history-field">
+                    <label for="historyLocation"
+                           data-page-i18n="locationLabel">
+                        Saved location
+                    </label>
+
+                    <select id="historyLocation" required>
+                        <option value="">Loading locations...</option>
+                    </select>
+                </div>
+
+                <div class="history-field">
+                    <label for="historyStartDate"
+                           data-page-i18n="startDateLabel">
+                        Start date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="historyStartDate"
+                        value="2020-01-01"
+                        required
+                    >
+                </div>
+
+                <div class="history-field">
+                    <label for="historyEndDate"
+                           data-page-i18n="endDateLabel">
+                        End date
+                    </label>
+
+                    <input type="date" id="historyEndDate" value="2025-12-31" required>
+                </div>
+
+                <button
+                    type="submit"
+                    id="loadHistoryButton"
+                    class="history-button"
+                    data-page-i18n="loadDataButton"
+                >
+                    Load Data
+                </button>
+
+            </form>
+
+        </section>
+
+        <div
+            id="historyMessage"
+            class="history-message"
+            role="status"
+            aria-live="polite"
+            data-page-i18n="readyMessage"
+        >
+            Select a saved location and date range to view historical data.
+        </div>
+
+        <section class="history-metrics">
+
+            <article class="history-metric">
+                <div class="history-metric-label"
+                     data-page-i18n="metricRecords">
+                    Records Returned
+                </div>
+                <div class="history-metric-value" id="recordsCount">—</div>
+                <div class="history-metric-unit">Daily observations</div>
+            </article>
+
+            <article class="history-metric">
+                <div class="history-metric-label"
+                     data-page-i18n="metricAverageTemp">
+                    Average Temperature
+                </div>
+                <div class="history-metric-value" id="averageTemperature">—</div>
+                <div class="history-metric-unit">°C</div>
+            </article>
+
+            <article class="history-metric">
+                <div class="history-metric-label"
+                     data-page-i18n="metricMaxTemp">
+                    Maximum Temperature
+                </div>
+                <div class="history-metric-value" id="maximumTemperature">—</div>
+                <div class="history-metric-unit">°C</div>
+            </article>
+
+            <article class="history-metric">
+                <div class="history-metric-label"
+                     data-page-i18n="metricMinTemp">
+                    Minimum Temperature
+                </div>
+                <div class="history-metric-value" id="minimumTemperature">—</div>
+                <div class="history-metric-unit">°C</div>
+            </article>
+
+            <article class="history-metric">
+                <div class="history-metric-label"
+                     data-page-i18n="metricTotalPrecip">
+                    Total Precipitation
+                </div>
+                <div class="history-metric-value" id="totalPrecipitation">—</div>
+                <div class="history-metric-unit">mm</div>
+            </article>
+
+        </section>
+        <section class="history-charts">
+
+            <!-- 1. Daily Average Temperature -->
+            <article class="history-chart-card">
+                <h2 data-page-i18n="chartTempTitle">
+                    Daily Average Temperature
+                </h2>
+                <div class="history-chart-container">
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </article>
+
+            <!-- 2. Daily Precipitation -->
+            <article class="history-chart-card">
+                <h2 data-page-i18n="chartPrecipTitle">
+                    Daily Precipitation
+                </h2>
+                <div class="history-chart-container">
+                    <canvas id="precipitationChart"></canvas>
+                </div>
+            </article>
+
+            <!-- 3. Daily Average Humidity -->
+            <article class="history-chart-card">
+                <h2 data-page-i18n="chartHumidityTitle">
+                    Daily Average Humidity
+                </h2>
+                <div class="history-chart-container">
+                    <canvas id="humidityChart"></canvas>
+                </div>
+            </article>
+
+            <!-- 4. Daily Maximum Wind Speed -->
+            <article class="history-chart-card">
+                <h2 data-page-i18n="chartWindTitle">
+                    Daily Maximum Wind Speed
+                </h2>
+                <div class="history-chart-container">
+                    <canvas id="windChart"></canvas>
+                </div>
+            </article>
+
+            <!-- 5. Annual Precipitation -->
+            <article class="history-chart-card">
+                <h2 data-page-i18n="annualPrecipTitle">
+                    Annual Precipitation Trend
+                </h2>
+
+                <p
+                    id="yearlySummaryMessage"
+                    class="history-muted"
+                    role="status"
+                    aria-live="polite"
+                >
+                    Yearly summary will appear here.
+                </p>
+
+                <div class="history-chart-container">
+                    <canvas id="yearlyPrecipitationChart"></canvas>
+                </div>
+            </article>
+
+            <!-- 6. Yearly Average Temperature -->
+            <article class="history-chart-card">
+                <h2 data-page-i18n="annualTempTitle">
+                    Yearly Average Temperature Trend
+                </h2>
+                <div class="history-chart-container">
+                    <canvas id="yearlyTemperatureChart"></canvas>
+                </div>
+            </article>
+
+            <!-- 7. Yearly Average Humidity -->
+            <article class="history-chart-card">
+                <h2 data-page-i18n="annualHumidityTitle">
+                    Yearly Average Humidity Trend
+                </h2>
+                <div class="history-chart-container">
+                    <canvas id="yearlyHumidityChart"></canvas>
+                </div>
+            </article>
+
+            <!-- 8. Yearly Average Daily Maximum Wind Speed -->
+            <article class="history-chart-card">
+                <h2 data-page-i18n="annualWindTitle">
+                    Yearly Average Daily Maximum Wind Speed
+                </h2>
+                <div class="history-chart-container">
+                    <canvas id="yearlyWindChart"></canvas>
+                </div>
+            </article>
+
+        </section>
+       
+
+        <div class="history-disclaimer"
+             data-page-i18n="sourceNote">
+            Source: Open-Meteo Historical Weather API. The historical
+            values are reanalysis data and should not be described as
+            direct weather-station measurements.
+        </div>
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/translations.js"></script>
+<script src="js/historical-data.js"></script>
+
+</body>
+</html>

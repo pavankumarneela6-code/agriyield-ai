@@ -1,0 +1,1667 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Climate Intelligence | El Niño AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</head>
+
+
+<body class="climate-dashboard">
+
+<div class="dashboard-layout">
+
+
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar" id="dashboardSidebar">
+
+        <a href="index.html" class="dashboard-brand">
+
+            <span class="brand-symbol">E</span>
+
+            <span>
+                <strong>El Niño <span>AI</span></strong>
+                <small>CLIMATE INTELLIGENCE</small>
+            </span>
+
+        </a>
+
+
+        <div class="sidebar-section-label" data-i18n="workspace">
+            WORKSPACE
+        </div>
+
+
+        <nav class="sidebar-navigation">
+
+            <a href="dashboard.html" class="sidebar-link active">
+
+                <span class="nav-icon">▦</span>
+                <span data-i18n="overview">Overview</span>
+
+            </a>
+
+
+            <a href="el-nino-analysis.html" class="sidebar-link">
+
+                <span class="nav-icon">≈</span>
+                <span data-i18n="ensoAnalysis">ENSO Analysis</span>
+
+            </a>
+
+
+            <a href="climate-analysis.html" class="sidebar-link">
+
+                <span class="nav-icon">◉</span>
+                <span data-i18n="climateAnalytics">Climate Analytics</span>
+
+            </a>
+
+
+            <a href="impact-prediction.html" class="sidebar-link">
+
+                <span class="nav-icon">⌁</span>
+                <span data-i18n="impactPrediction">Impact Prediction</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-section-label" data-i18n="intelligence">
+            INTELLIGENCE
+        </div>
+
+
+        <nav class="sidebar-navigation">
+
+            <a href="agriculture-analysis.html" class="sidebar-link">
+
+                <span class="nav-icon">♧</span>
+                <span data-i18n="agriculture">Agriculture</span>
+
+            </a>
+
+
+            <a href="food-price-prediction.html" class="sidebar-link">
+
+                <span class="nav-icon">↗</span>
+                <span data-i18n="foodPriceForecast">Food Price Forecast</span>
+
+            </a>
+
+
+            <a href="historical-data.html" class="sidebar-link">
+
+                <span class="nav-icon">◷</span>
+                <span data-i18n="historicalData">Historical Data</span>
+
+            </a>
+
+
+            <a href="reports.html" class="sidebar-link">
+
+                <span class="nav-icon">▤</span>
+                <span data-i18n="reports">Reports</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-help">
+
+                <span class="help-icon">✳</span>
+
+                <strong data-i18n="climateInsights">
+                    Climate insights
+                </strong>
+
+                <p data-i18n="climateInsightsDescription">
+                    Explore climate patterns and understand potential regional impacts.
+                </p>
+
+                <a href="about.html">
+
+                    <span data-i18n="aboutPlatform">
+                        About the platform
+                    </span>
+
+                    →
+
+                </a>
+
+            </div>
+
+
+            <button
+                class="sidebar-logout"
+                id="logoutButton"
+                type="button"
+            >
+
+                <span>↪</span>
+                <span data-i18n="signOut">Sign out</span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+
+        <!-- TOPBAR -->
+        <header class="dashboard-topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="sidebar-toggle"
+                    id="sidebarToggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                >
+                    ☰
+                </button>
+
+
+                <div class="breadcrumb">
+
+                    <span data-i18n="workspace">Workspace</span>
+
+                    <span>/</span>
+
+                    <strong data-i18n="overview">Overview</strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <!-- API STATUS -->
+                <div class="system-indicator">
+
+                    <span class="indicator-dot"></span>
+
+                    <span data-i18n="apiMonitoring">
+                        API monitoring
+                    </span>
+
+                </div>
+
+
+                <div class="profile-divider"></div>
+
+
+                <!-- USER AVATAR -->
+                <div class="profile-avatar" id="profileAvatar">
+                    U
+                </div>
+
+
+                <!-- USER DETAILS -->
+                <div class="profile-details">
+
+                    <strong id="dashboardUserName">
+                        Climate User
+                    </strong>
+
+                    <small id="dashboardUserEmail">
+                        Account dashboard
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- DASHBOARD CONTENT -->
+        <div class="dashboard-content">
+
+
+            <!-- WELCOME SECTION -->
+            <section class="welcome-section">
+
+                <div class="welcome-copy">
+
+                    <div class="eyebrow">
+
+                        <span class="eyebrow-line"></span>
+
+                        <span data-i18n="welcomeEyebrow">
+                            CLIMATE INTELLIGENCE PLATFORM
+                        </span>
+
+                    </div>
+
+
+                    <h1>
+
+                        <span
+                            data-i18n="welcomeTitle"
+                            style="color: inherit;"
+                        >
+                            Understand the climate.
+                        </span>
+
+                        <br>
+
+                        <span data-i18n="welcomeSubtitle">
+                            Anticipate the impact.
+                        </span>
+
+                    </h1>
+
+
+                    <p data-i18n="welcomeDescription">
+                        Your central workspace for ENSO monitoring,
+                        climate analytics, and regional risk assessment.
+                    </p>
+
+
+                    <div class="welcome-actions">
+
+                        <a href="el-nino-analysis.html" class="primary-action">
+
+                            <span data-i18n="exploreENSO">
+                                Explore ENSO
+                            </span>
+
+                            <span>↗</span>
+
+                        </a>
+
+
+                        <a href="historical-data.html" class="secondary-action">
+
+                            <span data-i18n="historicalDataButton">
+                                Historical data
+                            </span>
+
+                            <span>→</span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DECORATIVE GLOBE -->
+                <div class="welcome-visual" aria-hidden="true">
+
+                    <div class="visual-orbit orbit-one"></div>
+                    <div class="visual-orbit orbit-two"></div>
+
+
+                    <div class="visual-globe">
+
+                        <div class="globe-longitude"></div>
+                        <div class="globe-latitude"></div>
+                        <div class="globe-highlight"></div>
+
+                    </div>
+
+
+                    <div class="visual-caption">
+
+                        <span class="indicator-dot"></span>
+
+                        <span>
+
+                            <strong data-i18n="globalClimate">
+                                GLOBAL CLIMATE
+                            </strong>
+
+                            <small data-i18n="connectedIntelligence">
+                                Connected intelligence
+                            </small>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- CLIMATE OVERVIEW AND LOCATION -->
+            <section class="section-heading">
+
+                <div>
+
+                    <div class="eyebrow" data-i18n="systemOverview">
+                        SYSTEM OVERVIEW
+                    </div>
+
+                    <h2 data-i18n="climateAtGlance">
+                        Climate at a glance
+                    </h2>
+
+                    <p data-i18n="weatherLocationDescription">
+                        Weather information is based on the selected location.
+                    </p>
+
+                </div>
+
+
+
+                <!-- LOCATION SELECTOR -->
+                <div class="location-picker">
+
+                    <button
+                        type="button"
+                        id="openLocationPickerButton"
+                        class="secondary-action"
+                        style="color: #07111f;"
+                    >
+
+                        📍
+
+                        <span data-i18n="chooseLocation">
+                            Choose Location
+                        </span>
+
+                    </button>
+
+
+                    <span id="selectedLocationName">
+                        Loading saved location...
+                    </span>
+
+                </div>
+
+
+
+                <!-- DATA STATUS -->
+                <span class="data-badge">
+
+                    <span class="indicator-dot muted-dot"></span>
+
+                    <span data-i18n="awaitingData">
+                        Awaiting data
+                    </span>
+
+                </span>
+
+            </section>
+
+
+
+            <!-- METRIC CARDS -->
+            <section class="metrics-grid">
+
+
+                <!-- ENSO PHASE -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon teal-icon">≈</span>
+
+                        <span class="metric-label" data-i18n="ensoPhase">
+                            ENSO PHASE
+                        </span>
+
+                    </div>
+
+                    <!-- ENSO CONDITION -->
+                    <div
+                        class="metric-value metric-text-value"
+                        id="ensoPhaseValue"
+                        data-i18n="awaitingData"
+                    >
+                        Awaiting data
+                    </div>
+
+                    <p
+                        class="metric-description"
+                        id="ensoDescription"
+                        data-i18n="latestENSO"
+                    >
+                        Latest ENSO classification
+                    </p>
+
+                   <!-- RONI VALUE -->
+                    <div class="metric-footer" style="margin-top: 12px;">
+                        <span data-i18n="roniIndex">RONI Index:</span>
+                        <strong id="ensoRoniValue">—</strong>
+                    </div>
+
+                    <!-- OBSERVATION PERIOD -->
+                    <div class="metric-footer">
+                        <span data-i18n="observation">Observation:</span>
+                        <strong id="ensoObservationPeriod">—</strong>
+                    </div>
+
+                    <!-- EPISODE STATUS -->
+                    <div class="metric-footer">
+                        <span data-i18n="episodeStatus">Episode Status:</span>
+                        <strong id="ensoEpisodeStatus" data-i18n="loading">Loading...</strong>
+                    </div>
+
+                    <!-- DATA SOURCE -->
+                    <div class="metric-footer">
+                        <span data-i18n="source">Source:</span>
+                        <strong id="ensoSourceValue">NOAA CPC</strong>
+                    </div>
+
+                    <!-- LAST UPDATED -->
+                    <div class="metric-footer">
+                        <span class="metric-footer-dot"></span>
+                        <span id="ensoUpdatedAtValue" data-i18n="waitingNOAA">
+                            Waiting for NOAA data
+                        </span>
+                    </div>
+
+                </article>
+
+
+
+                <!-- TEMPERATURE -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon blue-icon">⌁</span>
+
+                        <span class="metric-label" data-i18n="temperature">
+                            TEMPERATURE
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="temperatureValue">—</span>
+
+                        <small>°C</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentTemperature">
+                        Current temperature at selected location
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="weatherObservation">
+                            Weather observation
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRECIPITATION -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon purple-icon">☂</span>
+
+                        <span class="metric-label" data-i18n="precipitation">
+                            PRECIPITATION
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="rainfallValue">—</span>
+
+                        <small>mm</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentPrecipitation">
+                        Current precipitation reading
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="weatherObservation">
+                            Weather observation
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- CLOUD COVER -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon purple-icon">☁</span>
+
+                        <span class="metric-label" data-i18n="cloudCover">
+                            CLOUD COVER
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="cloudCoverValue">—</span>
+
+                        <small>%</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentCloudCover">
+                        Current cloud coverage
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="atmosphericCloudCoverage">
+                            Atmospheric cloud coverage
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- UV INDEX -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon purple-icon">☀</span>
+
+                        <span class="metric-label" data-i18n="uvIndex">
+                            UV INDEX
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="uvIndexValue">—</span>
+
+                        <small>Index</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentUVIndex">
+                        Current ultraviolet radiation level
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="solarRadiationIndicator">
+                            Solar radiation indicator
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- FEELS LIKE -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon blue-icon">♨</span>
+
+                        <span class="metric-label" data-i18n="feelsLike">
+                            FEELS LIKE
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="feelsLikeValue">—</span>
+
+                        <small>°C</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentFeelsLike">
+                        Perceived temperature at selected location
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="currentWeather">
+                            Current weather
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- HUMIDITY -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon teal-icon">◌</span>
+
+                        <span class="metric-label" data-i18n="humidity">
+                            HUMIDITY
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="humidityValue">—</span>
+
+                        <small>%</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentHumidity">
+                        Relative humidity in the air
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="currentWeather">
+                            Current weather
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- WIND SPEED -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon purple-icon">↗</span>
+
+                        <span class="metric-label" data-i18n="windSpeed">
+                            WIND SPEED
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="windSpeedValue">—</span>
+
+                        <small>km/h</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentWindSpeed">
+                        Current wind speed
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="currentWeather">
+                            Current weather
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- WIND DIRECTION -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon orange-icon">➤</span>
+
+                        <span class="metric-label" data-i18n="windDirection">
+                            WIND DIRECTION
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="windDirectionValue">—</span>
+
+                        <small>°</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentWindDirection">
+                        Direction from which wind is blowing
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="currentWeather">
+                            Current weather
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- WIND GUSTS -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon blue-icon">≋</span>
+
+                        <span class="metric-label" data-i18n="windGusts">
+                            WIND GUSTS
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="windGustsValue">—</span>
+
+                        <small>km/h</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentWindGusts">
+                        Maximum short-duration wind speed
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="currentWeather">
+                            Current weather
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- AIR PRESSURE -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon teal-icon">◉</span>
+
+                        <span class="metric-label" data-i18n="airPressure">
+                            AIR PRESSURE
+                        </span>
+
+                    </div>
+
+
+                    <div class="metric-value metric-text-value">
+
+                        <span id="pressureValue">—</span>
+
+                        <small>hPa</small>
+
+                    </div>
+
+
+                    <p class="metric-description" data-i18n="currentAirPressure">
+                        Mean sea-level atmospheric pressure
+                    </p>
+
+
+                    <div class="metric-footer">
+
+                        <span data-i18n="currentWeather">
+                            Current weather
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- REGIONAL RISK -->
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <span class="metric-icon orange-icon">◎</span>
+
+                        <span class="metric-label" data-i18n="regionalRisk">
+                            REGIONAL RISK
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="metric-value metric-text-value"
+                        id="regionalRiskValue"
+                        data-i18n="notAssessed"
+                    >
+                        Not assessed
+                    </div>
+
+                    <p
+                        class="metric-description"
+                        id="regionalRiskDescription"
+                        data-i18n="locationRisk"
+                    >
+                        Location-specific climate risk
+                    </p>
+
+                    <div class="metric-footer">
+
+                        <span class="metric-footer-dot"></span>
+
+                        <span id="rainfallDeficitValue">
+                            Rainfall deficit: —
+                        </span>
+
+                    </div>
+
+                    <div class="metric-footer">
+
+                        <span id="temperatureAnomalyValue">
+                            Temperature anomaly: —
+                        </span>
+
+                    </div>
+
+                </article>
+            </section>
+            <!-- WEATHER DATA PROVENANCE -->
+            <div class="weather-data-meta" aria-live="polite">
+
+                <span>
+                    <span data-i18n="dataSource">Data source:</span>
+
+                    <strong id="weatherSourceValue">
+                        Awaiting data
+                    </strong>
+                </span>
+
+                <span>
+                    <span data-i18n="dataType">Data type:</span>
+
+                    <strong id="weatherSourceTypeValue">—</strong>
+                </span>
+
+                <span>
+                    <span data-i18n="lastUpdated">Last updated:</span>
+
+                    <strong id="weatherUpdatedAtValue">—</strong>
+                </span>
+
+            </div>
+
+
+
+            <!-- ANALYTICS -->
+            <section class="analytics-grid">
+
+
+                <!-- CLIMATE TREND -->
+                <article class="panel trend-panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+
+                            <div class="eyebrow" data-i18n="climateMonitoring">
+                                CLIMATE MONITORING
+                            </div>
+
+                            <h2 data-i18n="climateTrendExplorer">
+                                Climate trend explorer
+                            </h2>
+
+                            <p data-i18n="historicalObservations">
+                                Historical observations and climate variability
+                            </p>
+
+                        </div>
+
+
+                        <span class="panel-tag" data-i18n="historicalSeries">
+                            Historical series
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- EMPTY STATE -->
+                    <div
+                        class="chart-empty-state"
+                        id="climateChartEmpty"
+                    >
+
+                        <div class="empty-chart-icon">⌁</div>
+
+                        <strong data-i18n="climateDataUnavailable">
+                            Climate data will appear here
+                        </strong>
+
+                        <p data-i18n="connectHistoricalData">
+                            Connect historical observations to visualize
+                            temperature and rainfall trends.
+                        </p>
+
+                        <a
+                            href="historical-data.html"
+                            data-i18n="exploreHistoricalData"
+                        >
+                            Explore historical data →
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- CHART CONTAINER -->
+                    <div
+                        class="chart-container"
+                        id="climateChartContainer"
+                        hidden
+                    >
+
+                        <canvas
+                            id="climateTrendChart"
+                            aria-label="Historical climate trend chart"
+                        ></canvas>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ENSO INTELLIGENCE -->
+                <article class="panel enso-panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+
+                            <div class="eyebrow" data-i18n="pacificOcean">
+                                PACIFIC OCEAN
+                            </div>
+
+                            <h2 data-i18n="ensoIntelligence">
+                                ENSO intelligence
+                            </h2>
+
+                        </div>
+
+
+                        <span class="enso-symbol">≈</span>
+
+                    </div>
+
+
+
+                    <div class="enso-visual">
+
+                        <div class="enso-ring ring-outer"></div>
+
+                        <div class="enso-ring ring-inner"></div>
+
+
+                        <div class="enso-center">
+
+                            <span>ENSO</span>
+
+                            <strong>—</strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="enso-status-box">
+
+                        <span class="status-indicator"></span>
+
+                        <div>
+
+                            <strong data-i18n="phaseUnavailable">
+                                Phase not yet available
+                            </strong>
+
+                            <p data-i18n="connectENSOObservation">
+                                Connect an ENSO observation source
+                                to identify the current phase.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <a href="el-nino-analysis.html" class="panel-link">
+
+                        <span data-i18n="openENSOAnalysis">
+                            Open ENSO analysis
+                        </span>
+
+                        <span>→</span>
+
+                    </a>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- INTELLIGENCE MODULES -->
+            <section class="section-heading modules-heading">
+
+                <div>
+
+                    <div class="eyebrow" data-i18n="yourWorkspace">
+                        YOUR WORKSPACE
+                    </div>
+
+                    <h2 data-i18n="intelligenceModules">
+                        Intelligence modules
+                    </h2>
+
+                    <p data-i18n="chooseModule">
+                        Choose a module to explore its analysis tools.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <section class="modules-grid">
+
+
+                <!-- CLIMATE ANALYTICS -->
+                <a href="climate-analysis.html" class="module-card">
+
+                    <div class="module-icon module-teal">◉</div>
+
+                    <span class="module-arrow">↗</span>
+
+                    <h3 data-i18n="climateAnalytics">
+                        Climate Analytics
+                    </h3>
+
+                    <p data-i18n="climateModuleDescription">
+                        Explore rainfall, temperature, and weather indicators.
+                    </p>
+
+                    <span class="module-link" data-i18n="openAnalytics">
+                        Open analytics →
+                    </span>
+
+                </a>
+
+
+
+                <!-- IMPACT PREDICTION -->
+                <a href="impact-prediction.html" class="module-card">
+
+                    <div class="module-icon module-blue">⌁</div>
+
+                    <span class="module-arrow">↗</span>
+
+                    <h3 data-i18n="impactPrediction">
+                        Impact Prediction
+                    </h3>
+
+                    <p data-i18n="impactModuleDescription">
+                        Investigate potential regional climate-related risks.
+                    </p>
+
+                    <span class="module-link" data-i18n="explorePredictions">
+                        Explore predictions →
+                    </span>
+
+                </a>
+
+
+
+                <!-- AGRICULTURE -->
+                <a href="agriculture-analysis.html" class="module-card">
+
+                    <div class="module-icon module-green">♧</div>
+
+                    <span class="module-arrow">↗</span>
+
+                    <h3 data-i18n="agricultureIntelligence">
+                        Agriculture Intelligence
+                    </h3>
+
+                    <p data-i18n="agricultureModuleDescription">
+                        Analyze possible climate impacts on agricultural systems.
+                    </p>
+
+                    <span class="module-link" data-i18n="exploreAgriculture">
+                        Explore agriculture →
+                    </span>
+
+                </a>
+
+
+
+                <!-- FOOD PRICES -->
+                <a href="food-price-prediction.html" class="module-card">
+
+                    <div class="module-icon module-orange">↗</div>
+
+                    <span class="module-arrow">↗</span>
+
+                    <h3 data-i18n="foodPrice">
+                        Food Price Forecast
+                    </h3>
+
+                    <p data-i18n="foodPriceModuleDescription">
+                        Explore market data and climate-related price patterns.
+                    </p>
+
+                    <span class="module-link" data-i18n="analyzeMarketData">
+                        Analyze market data →
+                    </span>
+
+                </a>
+
+
+
+                <!-- HISTORICAL DATA -->
+                <a href="historical-data.html" class="module-card">
+
+                    <div class="module-icon module-purple">◷</div>
+
+                    <span class="module-arrow">↗</span>
+
+                    <h3 data-i18n="historicalData">
+                        Historical Data
+                    </h3>
+
+                    <p data-i18n="historicalModuleDescription">
+                        Investigate historical ENSO and weather observations.
+                    </p>
+
+                    <span class="module-link" data-i18n="browseHistory">
+                        Browse history →
+                    </span>
+
+                </a>
+
+
+
+                <!-- REPORTS -->
+                <a href="reports.html" class="module-card">
+
+                    <div class="module-icon module-cyan">▤</div>
+
+                    <span class="module-arrow">↗</span>
+
+                    <h3 data-i18n="reportsInsights">
+                        Reports & Insights
+                    </h3>
+
+                    <p data-i18n="reportsModuleDescription">
+                        Access reports generated from available analysis results.
+                    </p>
+
+                    <span class="module-link" data-i18n="viewReports">
+                        View reports →
+                    </span>
+
+                </a>
+
+            </section>
+
+
+
+            <!-- SYSTEM STATUS -->
+            <section class="bottom-grid">
+
+
+                <!-- SYSTEM PANEL -->
+                <article class="panel system-panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+
+                            <div class="eyebrow" data-i18n="platformStatus">
+                                PLATFORM STATUS
+                            </div>
+
+                            <h2 data-i18n="systemReadiness">
+                                System readiness
+                            </h2>
+
+                        </div>
+
+
+                        <span class="system-ready-tag" data-i18n="frontend">
+                            Frontend
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- DASHBOARD -->
+                    <div class="system-row">
+
+                        <span class="system-row-icon">✓</span>
+
+                        <div>
+
+                            <strong data-i18n="dashboardInterface">
+                                Dashboard interface
+                            </strong>
+
+                            <small data-i18n="loadedInBrowser">
+                                Loaded in browser
+                            </small>
+
+                        </div>
+
+
+                        <span class="row-status" data-i18n="available">
+                            Available
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- CLIMATE DATA -->
+                    <div class="system-row">
+
+                        <span class="system-row-icon pending-icon">…</span>
+
+                        <div>
+
+                            <strong data-i18n="liveClimateObservations">
+                                Live climate observations
+                            </strong>
+
+                            <small data-i18n="externalDataIntegration">
+                                External data integration
+                            </small>
+
+                        </div>
+
+
+                        <span
+                            class="row-status pending-status"
+                            data-i18n="pending"
+                        >
+                            Pending
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- PREDICTIONS -->
+                    <div class="system-row">
+
+                        <span class="system-row-icon pending-icon">…</span>
+
+                        <div>
+
+                            <strong data-i18n="predictionResults">
+                                Prediction results
+                            </strong>
+
+                            <small data-i18n="trainedModelIntegration">
+                                Trained model integration
+                            </small>
+
+                        </div>
+
+
+                        <span
+                            class="row-status pending-status"
+                            data-i18n="pending"
+                        >
+                            Pending
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ABOUT -->
+                <article class="panel about-panel">
+
+                    <div class="about-icon">✳</div>
+
+                    <div class="eyebrow" data-i18n="builtForClimateAwareness">
+                        BUILT FOR CLIMATE AWARENESS
+                    </div>
+
+                    <h2 data-i18n="fromObservations">
+                        From observations to insights.
+                    </h2>
+
+                    <p data-i18n="aboutDashboardDescription">
+                        El Niño AI aims to connect ENSO observations,
+                        regional climate records, and predictive models
+                        to support evidence-based climate analysis.
+                    </p>
+
+
+                    <a href="about.html" class="panel-link">
+
+                        <span data-i18n="discoverPlatform">
+                            Discover the platform
+                        </span>
+
+                        <span>→</span>
+
+                    </a>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+
+                <span data-i18n="dashboardCopyright">
+                    © 2026 El Niño AI · Climate Intelligence Platform
+                </span>
+
+                <span data-i18n="scientificDisclaimer">
+                    Scientific insights depend on data quality and model validation.
+                </span>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- LOCATION MAP MODAL -->
+<div
+    id="locationPickerModal"
+    class="location-modal"
+    hidden
+>
+
+
+    <!-- MODAL BACKDROP -->
+    <div
+        class="location-modal-backdrop"
+        id="locationModalBackdrop"
+    ></div>
+
+
+
+    <!-- MODAL CARD -->
+    <section
+        class="location-modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="locationModalTitle"
+    >
+
+
+        <!-- MODAL HEADING -->
+        <header class="location-modal-header">
+
+            <div>
+
+                <div class="eyebrow" data-i18n="locationSettings">
+                    LOCATION SETTINGS
+                </div>
+
+
+                <h2
+                    id="locationModalTitle"
+                    data-i18n="chooseYourLocation"
+                >
+                    Choose your location
+                </h2>
+
+
+                <p data-i18n="locationModalDescription">
+                    Search for a place or select it directly on the map.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="closeLocationPickerButton"
+                aria-label="Close location map"
+            >
+                ✕
+            </button>
+
+        </header>
+
+
+
+        <!-- SEARCH FORM -->
+        <form id="locationSearchForm">
+
+            <label
+                for="locationSearchInput"
+                data-i18n="searchLocation"
+            >
+                Search location
+            </label>
+
+
+            <div class="location-search-row">
+
+                <input
+                    type="search"
+                    id="locationSearchInput"
+                    placeholder="Enter a city, town or address..."
+                    data-i18n-placeholder="locationSearchPlaceholder"
+                    autocomplete="off"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    id="locationSearchButton"
+                    data-i18n="search"
+                >
+                    Search
+                </button>
+
+            </div>
+
+        </form>
+
+
+
+        <!-- SEARCH STATUS -->
+        <p
+            id="locationSearchMessage"
+            aria-live="polite"
+            data-i18n="locationSearchInitialMessage"
+        >
+            Search for a location to get started.
+        </p>
+
+
+
+        <!-- SEARCH RESULTS -->
+        <div
+            id="locationSearchResults"
+            class="location-search-results"
+        ></div>
+
+
+
+        <!-- INTERACTIVE MAP -->
+        <div
+            id="locationMap"
+            role="application"
+            aria-label="Interactive location map"
+        ></div>
+
+
+
+        <!-- SELECTED LOCATION -->
+        <div class="selected-location-info">
+
+            <strong data-i18n="selectedLocation">
+                Selected location
+            </strong>
+
+
+            <p
+                id="selectedLocationDetails"
+                data-i18n="noLocationSelected"
+            >
+                No location selected yet.
+            </p>
+
+        </div>
+
+
+
+        <!-- SAVE LOCATION -->
+        <button
+            type="button"
+            id="saveSelectedLocation"
+            class="primary-action"
+            data-i18n="useThisLocation"
+            disabled
+        >
+            Use This Location
+        </button>
+
+
+
+        <!-- MAP ATTRIBUTION -->
+        <p class="map-attribution" data-i18n="mapAttribution">
+            Map data © OpenStreetMap contributors
+        </p>
+
+    </section>
+
+</div>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script src="js/translations.js" defer></script>
+
+<script src="js/main.js" defer></script>
+
+<script src="js/dashboard.js" defer></script>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+
+
+</body>
+</html>
+
+

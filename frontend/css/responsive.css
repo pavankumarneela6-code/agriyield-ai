@@ -1,0 +1,284 @@
+/* =========================================
+   EL NINO AI — RESPONSIVE DESIGN
+   Theme: Dark Navy Blue + Teal Green
+   File: frontend/css/responsive.css
+========================================= */
+
+/* ---------- Tablets and Small Laptops ---------- */
+
+@media screen and (max-width: 1024px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .hero-layout {
+        gap: 35px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.4rem, 5vw, 3.5rem);
+    }
+
+    .hero-visual {
+        transform: scale(0.9);
+    }
+
+    .about-grid,
+    .intelligence-grid,
+    .impact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .section-heading {
+        max-width: 750px;
+    }
+}
+
+/* ---------- Tablets and Mobile Navigation ---------- */
+
+@media screen and (max-width: 768px) {
+
+    .container {
+        width: 90%;
+    }
+
+    .navbar {
+        min-height: 72px;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Mobile Navigation Menu */
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        padding: 16px 5%;
+
+        background: var(--navy-900);
+        border-top: 1px solid rgba(66, 224, 191, 0.15);
+        border-bottom: 1px solid rgba(66, 224, 191, 0.15);
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu .nav-link {
+        display: block;
+        padding: 14px 0;
+    }
+
+    .nav-menu .nav-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+    } 
+
+    .nav-actions {
+        gap: 10px;
+    }
+
+    .hero-section {
+        padding: 65px 0 45px;
+    }
+
+    .hero-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.3rem, 7vw, 3.5rem);
+    }
+
+    .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-visual {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        transform: none;
+    }
+
+    .hero-bottom-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .about-section,
+    .intelligence-section,
+    .impacts-section {
+        padding: 70px 0;
+    }
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .cta-section {
+        padding: 55px 0;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ---------- Mobile Phones ---------- */
+
+@media screen and (max-width: 480px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .navbar {
+        min-height: 64px;
+    }
+
+    .brand {
+        font-size: 1.05rem;
+    }
+
+    .brand img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .nav-actions .btn {
+        padding: 9px 12px;
+        font-size: 0.8rem;
+    }
+
+    .hero-section {
+        padding: 48px 0 35px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.25rem;
+        line-height: 1.15;
+        letter-spacing: -1px;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .hero-visual {
+        max-width: 340px;
+    }
+
+    .hero-bottom-strip {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .hero-bottom-strip > * {
+        min-width: 0;
+    }
+
+    .about-grid,
+    .intelligence-grid,
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-card,
+    .intelligence-card,
+    .impact-card {
+        padding: 22px;
+    }
+
+    .section-heading h2 {
+        font-size: 1.9rem;
+    }
+
+    .section-heading p {
+        font-size: 0.92rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .site-footer {
+        padding: 45px 0 22px;
+    }
+
+    .floating-card {
+        max-width: 145px;
+        padding: 10px;
+    }
+}
+
+/* ---------- Very Small Devices ---------- */
+
+@media screen and (max-width: 360px) {
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .nav-actions .btn {
+        padding: 8px 9px;
+        font-size: 0.75rem;
+    }
+
+    .hero-bottom-strip {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

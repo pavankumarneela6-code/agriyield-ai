@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="El Niño AI is a climate intelligence platform for analyzing ENSO patterns, rainfall, temperature, agricultural impacts, and food price trends."
+    >
+
+    <meta name="theme-color" content="#0B172A">
+
+    <title>El Niño AI | Climate Intelligence Platform</title>
+
+    <!-- First-time Language Selection Check -->
+    <script>
+        (function () {
+            "use strict";
+
+            const LANGUAGE_KEY = "elninoLanguage";
+            const SUPPORTED_LANGUAGES = ["en", "te", "hi"];
+
+            let savedLanguage = null;
+
+            try {
+                savedLanguage = localStorage.getItem(LANGUAGE_KEY);
+            } catch (error) {
+                console.warn("Could not access localStorage.");
+            }
+
+            // Session storage fallback
+            if (!SUPPORTED_LANGUAGES.includes(savedLanguage)) {
+                try {
+                    savedLanguage = sessionStorage.getItem(LANGUAGE_KEY);
+                } catch (error) {
+                    savedLanguage = null;
+                }
+            }
+
+            // New visitor: redirect to language selection page
+            if (!SUPPORTED_LANGUAGES.includes(savedLanguage)) {
+                window.location.replace("language.html");
+            }
+        })();
+    </script>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Responsive Stylesheet -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Shared Translation System -->
+    <script src="js/translations.js" defer></script>
+
+    <!-- Main JavaScript -->
+    <script src="js/main.js" defer></script>
+
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+
+    <header class="site-header" id="home">
+
+        <nav class="navbar container" aria-label="Main navigation">
+
+            <a href="index.html" class="brand" aria-label="El Niño AI homepage">
+
+                <span class="brand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path
+                            d="M24 4C24 4 10 20 10 29C10 36.732 16.268 43 24 43C31.732 43 38 36.732 38 29C38 20 24 4 24 4Z"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        />
+
+                        <path
+                            d="M16 29C16 24 20 20 24 20"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M19 33L23 37L32 27"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </span>
+
+                <span class="brand-text">
+                    <strong>El Niño <span>AI</span></strong>
+                    <small data-i18n="homeBrandTagline">CLIMATE INTELLIGENCE</small>
+                </span>
+
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navMenu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu" id="navMenu">
+
+                <a href="#home" class="nav-link active" data-i18n="homeNavHome">
+                    Home
+                </a>
+
+                <a href="#about" class="nav-link" data-i18n="homeNavAbout">
+                    About El Niño
+                </a>
+
+                <a href="#intelligence" class="nav-link" data-i18n="homeNavIntelligence">
+                    Intelligence
+                </a>
+
+                <a href="#impacts" class="nav-link" data-i18n="homeNavImpacts">
+                    Climate Impacts
+                </a>
+
+                <div class="nav-actions">
+
+                    <a href="login.html" class="btn btn-outline" data-i18n="homeLogin">
+                        Login
+                    </a>
+
+                    <a href="register.html" class="btn btn-primary">
+                        <span data-i18n="homeGetStarted">Get Started</span>
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- ==================== HERO SECTION ==================== -->
+
+        <section class="hero-section">
+
+            <div class="hero-background" aria-hidden="true">
+
+                <div class="hero-glow hero-glow-one"></div>
+
+                <div class="hero-glow hero-glow-two"></div>
+
+                <div class="hero-grid"></div>
+
+            </div>
+
+            <div class="container hero-layout">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        <span class="status-dot"></span>
+
+                        <span data-i18n="homeHeroEyebrow">
+                            CLIMATE INTELLIGENCE PLATFORM
+                        </span>
+                    </div>
+
+                    <h1>
+                        <span class="hero-title-plain"
+                            data-i18n="homeHeroLine1">
+                            Understand Climate.
+                        </span>
+
+                        <span data-i18n="homeHeroLine2">
+                            Anticipate Change.
+                        </span>
+
+                        <span class="hero-title-plain"
+                            data-i18n="homeHeroLine3">
+                            Prepare for Tomorrow.
+                        </span>
+                    </h1>
+
+                    <p class="hero-description" data-i18n="homeHeroDescription">
+                        Explore El Niño patterns, analyze historical climate
+                        conditions, and understand potential impacts on rainfall,
+                        temperature, agriculture, and food prices through
+                        data-driven climate intelligence.
+                    </p>
+
+                    <div class="hero-actions">
+
+                       <a href="register.html" class="btn btn-primary btn-large">
+                            <span data-i18n="homeExplorePlatform">
+                                Explore the Platform
+                            </span>
+
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a href="#about" class="btn btn-secondary btn-large">
+                            <span data-i18n="homeDiscoverElNino">
+                                Discover El Niño
+                            </span>
+
+                            <span aria-hidden="true">↓</span>
+                        </a>
+
+                    </div>
+
+                    <div class="hero-trust">
+
+                        <div class="trust-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M12 3L20 6V11C20 16 16.5 19.5 12 21C7.5 19.5 4 16 4 11V6L12 3Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linejoin="round"
+                                />
+
+                                <path
+                                    d="M8.5 12L11 14.5L15.5 9.5"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+
+                        <p>
+                            <span data-i18n="homeHeroEvidence">Evidence-based analysis</span>
+                            <span aria-hidden="true">•</span>
+                            <span data-i18n="homeHeroDataDriven">Data-driven insights</span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Climate Intelligence Visual -->
+
+                <div class="hero-visual">
+
+                    <div class="visual-orbit orbit-one"></div>
+
+                    <div class="visual-orbit orbit-two"></div>
+
+                    <div class="climate-globe">
+
+                        <div class="globe-inner">
+
+                            <div class="globe-latitude latitude-one"></div>
+
+                            <div class="globe-latitude latitude-two"></div>
+
+                            <div class="globe-longitude longitude-one"></div>
+
+                            <div class="globe-longitude longitude-two"></div>
+
+                            <div class="globe-land land-one"></div>
+
+                            <div class="globe-land land-two"></div>
+
+                            <div class="globe-land land-three"></div>
+
+                            <div class="globe-point point-one"></div>
+
+                            <div class="globe-point point-two"></div>
+
+                            <div class="globe-point point-three"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card card-enso">
+
+                        <div class="floating-card-heading">
+
+                            <span class="mini-icon">◈</span>
+
+                            <span data-i18n="homeEnsoMonitor">ENSO MONITOR</span>
+
+                        </div>
+
+                        <h3 data-i18n="homeElNinoAnalysis">El Niño Analysis</h3>
+
+                        <p data-i18n="homeTrackOceanPatterns">
+                            Track ocean-atmosphere patterns
+                        </p>
+
+                        <div class="card-indicator">
+                            <span class="status-dot"></span>
+                            <span data-i18n="homeAnalysisPlatform">Analysis platform</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card card-climate">
+
+                        <div class="floating-card-heading">
+
+                            <span class="mini-icon">⌁</span>
+
+                            <span data-i18n="homeClimateInsights">CLIMATE INSIGHTS</span>
+
+                        </div>
+
+                        <div class="climate-insight-row">
+
+                            <span data-i18n="homeRainfall">Rainfall</span>
+
+                            <span class="insight-symbol">↗</span>
+
+                        </div>
+
+                        <div class="climate-insight-row">
+
+                            <span data-i18n="homeTemperature">Temperature</span>
+
+                            <span class="insight-symbol">↗</span>
+
+                        </div>
+
+                        <div class="climate-insight-row">
+
+                            <span data-i18n="homeAgriculture">Agriculture</span>
+
+                            <span class="insight-symbol">↗</span>
+
+                        </div>
+
+                        <small data-i18n="homeInsightsDataNotice">
+                            Insights depend on available data.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Platform Capabilities -->
+
+            <div class="container hero-bottom">
+
+                <div class="hero-bottom-item">
+
+                    <span class="bottom-number">01</span>
+
+                    <div>
+                        <strong data-i18n="homeEnsoAnalysisTitle">ENSO Analysis</strong>
+                        <small data-i18n="homeUnderstandClimatePatterns">Understand climate patterns</small>
+                    </div>
+
+                </div>
+
+                <div class="hero-bottom-item">
+
+                    <span class="bottom-number">02</span>
+
+                    <div>
+                        <strong data-i18n="homeClimateTrendsTitle">Climate Trends</strong>
+                        <small data-i18n="homeExploreHistoricalObservations">Explore historical observations</small>
+                    </div>
+
+                </div>
+
+                <div class="hero-bottom-item">
+
+                    <span class="bottom-number">03</span>
+
+                    <div>
+                        <strong data-i18n="homeImpactAssessmentTitle">Impact Assessment</strong>
+                        <small data-i18n="homeInvestigateRegionalRisks">Investigate regional risks</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== ABOUT EL NIÑO ==================== -->
+
+        <section class="section about-section" id="about">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span
+                        class="section-label"
+                        data-i18n="homeAboutEyebrow"
+                    >
+                        UNDERSTANDING THE PHENOMENON
+                    </span>
+
+                    <h2>
+                        <span
+                            class="about-title-lead"
+                            style="color: inherit;"
+                            data-i18n="homeAboutTitleLead"
+                        >What is</span>
+
+                        <span data-i18n="homeAboutTitleAccent">El Niño?</span>
+                    </h2>
+
+                    <p data-i18n="homeAboutIntro">
+                        A recurring climate phenomenon in the tropical Pacific
+                        Ocean that can influence weather patterns across
+                        different parts of the world.
+                    </p>
+
+                </div>
+
+                <div class="about-grid">
+
+                    <article class="about-card about-card-main">
+
+                        <div class="about-card-icon" aria-hidden="true">
+                            ◉
+                        </div>
+
+                        <h3 data-i18n="homeAboutOceanTitle">
+                            Ocean Meets Atmosphere
+                        </h3>
+
+                        <p data-i18n="homeAboutOceanDescription">
+                            El Niño is the warm phase of the El Niño–Southern
+                            Oscillation (ENSO). It involves unusually warm
+                            sea-surface temperatures in parts of the central
+                            and eastern equatorial Pacific Ocean, alongside
+                            changes in atmospheric circulation.
+                        </p>
+
+                        <a href="el-nino-analysis.html" class="text-link">
+                            <span data-i18n="homeAboutOceanLink">
+                                Explore ENSO Analysis
+                            </span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </article>
+
+
+                    <article class="about-card">
+
+                        <div class="about-card-icon" aria-hidden="true">
+                            ◷
+                        </div>
+
+                        <h3 data-i18n="homeAboutPatternsTitle">Changing Climate Patterns</h3>
+
+                        <p data-i18n="homeAboutPatternsDescription">
+                            El Niño can influence rainfall, temperature,
+                            and seasonal weather patterns. Its effects vary
+                            by region, season, and the wider climate system.
+                        </p>
+
+                    </article>
+
+
+                    <article class="about-card">
+
+                        <div class="about-card-icon" aria-hidden="true">
+                            ⌁
+                        </div>
+
+                        <h3 data-i18n="homeAboutImportanceTitle">Why It Matters</h3>
+
+                        <p data-i18n="homeAboutImportanceDescription">
+                            Understanding historical patterns can help
+                            researchers investigate potential drought risks,
+                            heat conditions, agricultural challenges,
+                            and other climate-related impacts.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== INTELLIGENCE SECTION ==================== -->
+
+        <section
+            class="section intelligence-section"
+            id="intelligence"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label" data-i18n="homeIntelligenceEyebrow">
+                        THE INTELLIGENCE FRAMEWORK
+                    </span>
+
+                    <h2>
+                        <span class="intelligence-title-plain" style="color: inherit;" data-i18n="homeIntelligenceTitleLead">Climate Data Into</span>
+                        <span data-i18n="homeIntelligenceTitleAccent">Meaningful Insights.</span>
+                    </h2>
+
+                    <p data-i18n="homeIntelligenceIntro">
+                        A unified platform designed to explore historical
+                        observations, investigate climate relationships,
+                        and evaluate potential future scenarios.
+                    </p>
+
+                </div>
+
+
+                <div class="intelligence-grid">
+
+                    <article class="intelligence-card">
+
+                        <div class="feature-number">01 / ENSO</div>
+
+                        <div class="feature-icon" aria-hidden="true">
+                            ◎
+                        </div>
+
+                        <h3 data-i18n="homeFeatureEnsoTitle">El Niño Intelligence</h3>
+
+                        <p data-i18n="homeFeatureEnsoDescription">
+                            Explore ENSO indices, historical phases,
+                            and climate variations associated with
+                            El Niño and La Niña periods.
+                        </p>
+
+                        <a
+                            href="el-nino-analysis.html"
+                            class="card-link"
+                            aria-label="Explore El Niño analysis"
+                        >
+                            <span data-i18n="homeFeatureExploreAnalysis">Explore analysis</span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </article>
+
+
+                    <article class="intelligence-card">
+
+                        <div class="feature-number">02 / CLIMATE</div>
+
+                        <div class="feature-icon" aria-hidden="true">
+                            ≋
+                        </div>
+
+                        <h3 data-i18n="homeFeatureClimateTitle">Climate Analytics</h3>
+
+                        <p data-i18n="homeFeatureClimateDescription">
+                            Investigate historical rainfall and temperature
+                            trends through interactive charts and
+                            location-based comparisons.
+                        </p>
+
+                        <a
+                            href="climate-analysis.html"
+                            class="card-link"
+                            aria-label="Explore climate analysis"
+                        >
+                            <span data-i18n="homeFeatureAnalyzeClimate">Analyze climate</span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </article>
+
+
+                    <article class="intelligence-card">
+
+                        <div class="feature-number">03 / PREDICTION</div>
+
+                        <div class="feature-icon" aria-hidden="true">
+                            ⌁
+                        </div>
+
+                        <h3 data-i18n="homeFeatureImpactTitle">Impact Prediction</h3>
+
+                        <p data-i18n="homeFeatureImpactDescription">
+                            Use appropriately evaluated machine learning
+                            models and historical evidence to assess
+                            potential climate-related risks.
+                        </p>
+
+                        <a
+                            href="impact-prediction.html"
+                            class="card-link"
+                            aria-label="Explore climate impact prediction"
+                        >
+                            <span data-i18n="homeFeatureExplorePredictions">Explore predictions</span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </article>
+
+
+                    <article class="intelligence-card">
+
+                        <div class="feature-number">04 / AGRICULTURE</div>
+
+                        <div class="feature-icon" aria-hidden="true">
+                            ❋
+                        </div>
+
+                        <h3 data-i18n="homeFeatureAgricultureTitle">Agriculture Insights</h3>
+
+                        <p data-i18n="homeFeatureAgricultureDescription">
+                            Investigate relationships between climate
+                            conditions, crop seasons, and available
+                            agricultural observations.
+                        </p>
+
+                        <a
+                            href="agriculture-analysis.html"
+                            class="card-link"
+                            aria-label="Explore agriculture analysis"
+                        >
+                            <span data-i18n="homeFeatureExploreAgriculture">Explore agriculture</span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </article>
+
+
+                    <article class="intelligence-card">
+
+                        <div class="feature-number">05 / MARKETS</div>
+
+                        <div class="feature-icon" aria-hidden="true">
+                            ◇
+                        </div>
+
+                        <h3 data-i18n="homeFeatureFoodPriceTitle">Food Price Analysis</h3>
+
+                        <p data-i18n="homeFeatureFoodPriceDescription">
+                            Examine historical commodity prices, market
+                            arrivals, and possible relationships between
+                            climate conditions and food prices.
+                        </p>
+
+                        <a
+                            href="food-price-prediction.html"
+                            class="card-link"
+                            aria-label="Explore food price analysis"
+                        >
+                            <span data-i18n="homeFeatureExploreMarkets">Explore markets</span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </article>
+
+
+                    <article class="intelligence-card">
+
+                        <div class="feature-number">06 / HISTORY</div>
+
+                        <div class="feature-icon" aria-hidden="true">
+                            ◷
+                        </div>
+
+                        <h3 data-i18n="homeFeatureHistoricalTitle">Historical Climate Records</h3>
+
+                        <p data-i18n="homeFeatureHistoricalDescription">
+                            Compare available historical observations
+                            to identify trends, anomalies, and
+                            recurring climate patterns.
+                        </p>
+
+                        <a
+                            href="historical-data.html"
+                            class="card-link"
+                            aria-label="Explore historical climate data"
+                        >
+                            <span data-i18n="homeFeatureViewHistorical">View historical data</span>
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== CLIMATE IMPACTS ==================== -->
+
+        <section class="section impacts-section" id="impacts">
+
+            <div class="container impacts-layout">
+
+                <div class="impacts-content">
+
+                    <span class="section-label" data-i18n="homeImpactsEyebrow">
+                        UNDERSTANDING THE IMPACT
+                    </span>
+
+                    <h2>
+                        <span class="impact-title-plain" style="color: inherit;" data-i18n="homeImpactsTitleLead">One Phenomenon.</span>
+                        <span data-i18n="homeImpactsTitleAccent">Different Regional Effects.</span>
+                    </h2>
+
+                    <p data-i18n="homeImpactsIntro">
+                        El Niño can influence climate conditions differently
+                        across the world. Understanding local historical
+                        observations is essential when evaluating potential
+                        risks and preparing for changing conditions.
+                    </p>
+
+                    <div class="impact-list">
+
+                        <div class="impact-item">
+
+                            <span class="impact-index">01</span>
+
+                            <div>
+                                <h3 data-i18n="homeImpactRainfallTitle">Rainfall Variability</h3>
+
+                                <p data-i18n="homeImpactRainfallDescription">
+                                    Investigate changes in rainfall patterns
+                                    and seasonal precipitation.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="impact-item">
+
+                            <span class="impact-index">02</span>
+
+                            <div>
+                                <h3 data-i18n="homeImpactTemperatureTitle">Temperature Changes</h3>
+
+                                <p data-i18n="homeImpactTemperatureDescription">
+                                    Analyze historical temperature anomalies
+                                    and potential heat-related conditions.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="impact-item">
+
+                            <span class="impact-index">03</span>
+
+                            <div>
+                                <h3 data-i18n="homeImpactAgricultureTitle">Agriculture & Food Markets</h3>
+
+                                <p data-i18n="homeImpactAgricultureDescription">
+                                    Examine how climate conditions may
+                                    relate to crop production and
+                                    commodity price movements.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <a href="impact-prediction.html" class="btn btn-primary">
+                        <span data-i18n="homeExploreClimateImpacts">Explore Climate Impacts</span>
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                </div>
+
+
+                <div class="impact-visual">
+
+                    <div class="impact-visual-top">
+
+                        <span data-i18n="homeImpactVisualHeading">CLIMATE INTELLIGENCE</span>
+
+                        <span class="visual-indicator">
+                            <span class="status-dot"></span>
+                            <span data-i18n="homeDataDrivenLabel">DATA-DRIVEN</span>
+                        </span>
+
+                    </div>
+
+
+                    <div class="impact-visual-center">
+
+                        <div class="impact-circle circle-outer"></div>
+
+                        <div class="impact-circle circle-middle"></div>
+
+                        <div class="impact-circle circle-inner">
+
+                            <div class="impact-center-symbol" aria-hidden="true">
+                                ◎
+                            </div>
+
+                            <strong data-i18n="homeImpactVisualElNino">EL NIÑO</strong>
+
+                            <small data-i18n="homeImpactVisualClimateAnalysis">CLIMATE ANALYSIS</small>
+
+                        </div>
+
+                        <div class="impact-node node-top">
+                            ENSO
+                        </div>
+
+                        <div class="impact-node node-left" data-i18n="homeImpactNodeRainfall">
+                            RAINFALL
+                        </div>
+
+                        <div class="impact-node node-right" data-i18n="homeImpactNodeHeat">
+                            HEAT
+                        </div>
+
+                        <div class="impact-node node-bottom" data-i18n="homeImpactNodeAgriculture">
+                            AGRICULTURE
+                        </div>
+
+                    </div>
+
+
+                    <div class="impact-visual-footer">
+
+                        <span data-i18n="homeImpactHistoricalEvidence">Historical evidence</span>
+
+                        <span aria-hidden="true">•</span>
+
+                        <span data-i18n="homeImpactRegionalContext">Regional context</span>
+
+                        <span aria-hidden="true">•</span>
+
+                        <span data-i18n="homeImpactRiskAssessment">Risk assessment</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== CALL TO ACTION ==================== -->
+
+        <section class="cta-section">
+
+            <div class="container">
+
+                <div class="cta-card">
+
+                    <div class="cta-content">
+
+                        <span class="section-label" data-i18n="homeCtaEyebrow">
+                            BEGIN YOUR EXPLORATION
+                        </span>
+
+                        <h2>
+                            <span class="cta-title-plain" style="color: inherit;" data-i18n="homeCtaTitleLead">Make Climate Data</span>
+                            <span data-i18n="homeCtaTitleAccent">More Meaningful.</span>
+                        </h2>
+
+                        <p data-i18n="homeCtaDescription">
+                            Explore climate patterns, understand historical
+                            evidence, and investigate potential impacts
+                            through one unified platform.
+                        </p>
+
+                        <div class="cta-actions">
+
+                            <a href="register.html" class="btn btn-primary btn-large">
+                                <span data-i18n="homeCreateAccount">Create Your Account</span>
+                                <span aria-hidden="true">→</span>
+                            </a>
+
+                            <a href="login.html" class="btn btn-outline btn-large">
+                                <span data-i18n="homeSignIn">Sign In</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="cta-decoration" aria-hidden="true">
+
+                        <div class="cta-ring ring-one"></div>
+
+                        <div class="cta-ring ring-two"></div>
+
+                        <div class="cta-ring ring-three"></div>
+
+                        <div class="cta-core">
+                            AI
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+
+                    <a href="index.html" class="brand">
+
+                        <span class="brand-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" fill="none">
+
+                                <path
+                                    d="M24 4C24 4 10 20 10 29C10 36.732 16.268 43 24 43C31.732 43 38 36.732 38 29C38 20 24 4 24 4Z"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                />
+
+                                <path
+                                    d="M16 29C16 24 20 20 24 20"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                />
+
+                                <path
+                                    d="M19 33L23 37L32 27"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+
+                            </svg>
+                        </span>
+
+                        <span class="brand-text">
+
+                            <strong>El Niño <span>AI</span></strong>
+
+                            <small data-i18n="homeBrandTagline">CLIMATE INTELLIGENCE</small>
+
+                        </span>
+
+                    </a>
+
+                    <p data-i18n="homeFooterDescription">
+                        Exploring climate patterns through data,
+                        scientific analysis, and machine learning.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3 data-i18n="homeFooterPlatform">Platform</h3>
+
+                    <a href="el-nino-analysis.html" data-i18n="homeFooterElNinoAnalysis">
+                        El Niño Analysis
+                    </a>
+
+                    <a href="climate-analysis.html" data-i18n="homeFooterClimateAnalysis">
+                        Climate Analysis
+                    </a>
+
+                    <a href="impact-prediction.html" data-i18n="homeFooterImpactPrediction">
+                        Impact Prediction
+                    </a>
+
+                    <a href="historical-data.html" data-i18n="homeFooterHistoricalData">
+                        Historical Data
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3 data-i18n="homeFooterExplore">Explore</h3>
+
+                    <a href="agriculture-analysis.html" data-i18n="homeFooterAgriculture">
+                        Agriculture
+                    </a>
+
+                    <a href="food-price-prediction.html" data-i18n="homeFooterFoodPrices">
+                        Food Prices
+                    </a>
+
+                    <a href="reports.html" data-i18n="homeFooterReports">
+                        Reports
+                    </a>
+
+                    <a href="about.html" data-i18n="homeFooterAboutProject">
+                        About the Project
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3 data-i18n="homeFooterAccount">Your Account</h3>
+
+                    <a href="login.html" data-i18n="homeFooterLogin">
+                        Login
+                    </a>
+
+                    <a href="register.html" data-i18n="homeFooterCreateAccount">
+                        Create Account
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; <span id="currentYear">2026</span>
+                    <span data-i18n="homeFooterCopyright">El Niño AI. Climate intelligence for a changing world.</span>
+                </p>
+
+                <p class="footer-disclaimer" data-i18n="homeFooterDisclaimer">
+                    Climate analysis is informational and depends on
+                    available data and model limitations.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07111F">
+
+    <title>Choose Language | El Niño AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 24px;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(
+                    circle at 85% 10%,
+                    rgba(25, 198, 165, 0.13),
+                    transparent 35%
+                ),
+                #07111F;
+            color: #F0F6FA;
+            font-family: Arial, sans-serif;
+        }
+
+        .language-card {
+            width: 100%;
+            max-width: 470px;
+            padding: 38px 30px;
+            border: 1px solid rgba(66, 224, 191, 0.22);
+            border-radius: 24px;
+            background: #101F35;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.30);
+        }
+
+        .brand {
+            margin-bottom: 8px;
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .brand span {
+            color: #42E0BF;
+        }
+
+        .brand-subtitle {
+            margin-bottom: 32px;
+            color: #71859B;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 27px;
+            text-align: center;
+        }
+
+        .description {
+            margin: 0 0 26px;
+            color: #A5B5C7;
+            font-size: 14px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .language-options {
+            display: grid;
+            gap: 13px;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            border: 1px solid rgba(165, 181, 199, 0.18);
+            border-radius: 14px;
+            background: #0B172A;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .language-option:hover,
+        .language-option.selected {
+            border-color: #19C6A5;
+            background: rgba(25, 198, 165, 0.08);
+        }
+
+        .language-option input {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            accent-color: #19C6A5;
+        }
+
+        .language-code {
+            display: grid;
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 12px;
+            background: rgba(25, 198, 165, 0.12);
+            color: #42E0BF;
+            font-weight: 800;
+        }
+
+        .language-text {
+            display: grid;
+            flex: 1;
+            gap: 5px;
+        }
+
+        .language-text strong {
+            font-size: 15px;
+        }
+
+        .language-text small {
+            color: #71859B;
+            font-size: 12px;
+        }
+
+        .continue-button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #19C6A5;
+            color: #07111F;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .continue-button:hover:not(:disabled) {
+            background: #42E0BF;
+            transform: translateY(-1px);
+        }
+
+        .continue-button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .footer-note {
+            margin-top: 22px;
+            color: #71859B;
+            font-size: 11px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .language-card {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="language-card">
+
+        <div class="brand">
+            El Niño <span>AI</span>
+        </div>
+
+        <div class="brand-subtitle">
+            CLIMATE INTELLIGENCE PLATFORM
+        </div>
+
+        <h1>Choose Your Language</h1>
+
+        <p class="description">
+            మీకు నచ్చిన భాషను ఎంచుకోండి.<br>
+            अपनी पसंदीदा भाषा चुनें।
+        </p>
+
+        <form id="languageForm">
+
+            <div class="language-options">
+
+                <label class="language-option">
+                    <input
+                        type="radio"
+                        name="language"
+                        value="en"
+                    >
+
+                    <span class="language-code">EN</span>
+
+                    <span class="language-text">
+                        <strong>English</strong>
+                        <small>Continue in English</small>
+                    </span>
+                </label>
+
+                <label class="language-option">
+                    <input
+                        type="radio"
+                        name="language"
+                        value="te"
+                    >
+
+                    <span class="language-code">తె</span>
+
+                    <span class="language-text">
+                        <strong>తెలుగు</strong>
+                        <small>తెలుగులో కొనసాగించండి</small>
+                    </span>
+                </label>
+
+                <label class="language-option">
+                    <input
+                        type="radio"
+                        name="language"
+                        value="hi"
+                    >
+
+                    <span class="language-code">हि</span>
+
+                    <span class="language-text">
+                        <strong>हिंदी</strong>
+                        <small>हिंदी में जारी रखें</small>
+                    </span>
+                </label>
+
+            </div>
+
+            <button
+                type="submit"
+                class="continue-button"
+                id="continueButton"
+                disabled
+            >
+                Continue →
+            </button>
+
+        </form>
+
+        <div class="footer-note">
+            Select your preferred language to enter the platform.
+        </div>
+
+    </main>
+
+    <script>
+        "use strict";
+
+        const languageForm =
+            document.getElementById("languageForm");
+
+        const continueButton =
+            document.getElementById("continueButton");
+
+        const languageOptions =
+            document.querySelectorAll(".language-option");
+
+        // Enable Continue after the user selects a language.
+        languageForm
+            .querySelectorAll('input[name="language"]')
+            .forEach(function (input) {
+
+                input.addEventListener("change", function () {
+
+                    continueButton.disabled = false;
+
+                    languageOptions.forEach(function (option) {
+                        const radio =
+                            option.querySelector("input");
+
+                         option.classList.toggle(
+                            "selected",
+                            radio.checked
+                        );
+                    });
+                });
+            });
+
+        // Save the selected language and open Home Page.
+        languageForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                const selectedLanguage =
+                    languageForm.querySelector(
+                        'input[name="language"]:checked'
+                    )?.value;
+
+                if (!["en", "te", "hi"].includes(selectedLanguage)) {
+                    return;
+                }
+
+                let preferenceSaved = false;
+
+                try {
+                    localStorage.setItem(
+                        "elninoLanguage",
+                        selectedLanguage
+                    );
+
+                    preferenceSaved =
+                        localStorage.getItem("elninoLanguage")
+                        === selectedLanguage;
+                } catch (error) {
+                    console.warn(
+                        "Persistent language storage is unavailable."
+                    );
+                }
+
+                // Session fallback if localStorage is unavailable.
+                if (!preferenceSaved) {
+                    try {
+                        sessionStorage.setItem(
+                            "elninoLanguage",
+                            selectedLanguage
+                        );
+                    } catch (error) {
+                        console.error(
+                            "Could not save the language preference.",
+                            error
+                        );
+
+                        alert(
+                            "Unable to save your language. Please check your browser settings."
+                        );
+
+                        return;
+                    }
+                }
+
+                window.location.replace("index.html");
+            }
+        );
+    </script>
+
+</body>
+</html>

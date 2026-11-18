@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Create an El Niño AI account to explore climate intelligence and impact analysis."
+    >
+
+    <meta name="theme-color" content="#0B172A">
+
+    <title data-i18n-page-title="registerPageTitle">Create Account | El Niño AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script src="js/translations.js" defer></script>
+    <script src="js/auth.js" defer></script>
+</head>
+
+<body class="auth-page">
+
+    <header class="site-header">
+
+        <nav class="navbar container" aria-label="Main navigation">
+
+            <a href="index.html" class="brand">
+
+                <span class="brand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path
+                            d="M24 4C24 4 10 20 10 29C10 36.732 16.268 43 24 43C31.732 43 38 36.732 38 29C38 20 24 4 24 4Z"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        />
+                        <path
+                            d="M19 33L23 37L32 27"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </span>
+
+                <span class="brand-text">
+                    <strong>El Niño <span>AI</span></strong>
+                    <small>CLIMATE INTELLIGENCE</small>
+                </span>
+
+            </a>
+
+            <a href="login.html" class="btn btn-outline" data-i18n="registerSignIn">
+                Sign In
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="auth-main">
+
+        <section class="auth-container container">
+
+            <div class="auth-intro">
+
+                <span class="section-label" data-i18n="registerJoinLabel">
+                    JOIN THE PLATFORM
+                </span>
+
+                <h1>
+                    <span data-i18n="registerBegin">Begin your</span>
+                    <span data-i18n="registerJourney">climate intelligence</span>
+                    journey.
+                </h1>
+
+                <p data-i18n="registerDescription">
+                    Create your account to explore historical climate
+                    observations, investigate ENSO patterns, and analyze
+                    potential regional impacts.
+                </p>
+
+                <div class="auth-feature-list">
+
+                    <div class="auth-feature">
+
+                        <span aria-hidden="true">01</span>
+
+                        <div>
+                            <strong data-i18n="registerFeature1">
+                                Explore Climate Data
+                            </strong>
+
+                            <p data-i18n="registerFeature1Description">
+                                Investigate historical rainfall and temperature.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-feature">
+
+                        <span aria-hidden="true">02</span>
+
+                        <div>
+                            <strong data-i18n="registerFeature2">
+                                Understand Regional Impacts
+                            </strong>
+
+                            <p data-i18n="registerFeature2Description">
+                                Explore climate-related risks using available evidence.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-feature">
+
+                        <span aria-hidden="true">03</span>
+
+                        <div>
+                            <strong data-i18n="registerFeature3">
+                                Discover AI Insights
+                            </strong>
+
+                            <p data-i18n="registerFeature3Description">
+                                Evaluate predictions with their limitations in mind.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="auth-card">
+
+                <div class="auth-card-heading">
+
+                    <span class="auth-icon" aria-hidden="true">✦</span>
+
+                    <h2 data-i18n="registerHeading">Create Account</h2>
+
+                    <p data-i18n="registerCardDescription">
+                        Enter your details to get started.
+                    </p>
+
+                </div>
+
+
+                <form id="registerForm" novalidate>
+
+                    <div class="form-group">
+
+                        <label for="registerName" data-i18n="registerNameLabel">
+                            Full name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="registerName"
+                            name="name"
+                            placeholder="Enter your full name"
+                            data-i18n-placeholder="registerNamePlaceholder"
+                            autocomplete="name"
+                            minlength="2"
+                            maxlength="100"
+                            required
+                        >
+
+                        <small class="field-error" id="registerNameError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="registerEmail" data-i18n="registerEmailLabel">
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            name="email"
+                            placeholder="you@example.com"
+                            data-i18n-placeholder="registerEmailPlaceholder"
+                            autocomplete="email"
+                            required
+                        >
+
+                        <small class="field-error" id="registerEmailError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="registerPassword" data-i18n="registerPasswordLabel">
+                            Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                name="password"
+                                placeholder="Create a strong password"
+                                data-i18n-placeholder="registerPasswordPlaceholder"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-password-toggle="registerPassword"
+                                data-i18n="loginShowPassword"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                        <small class="field-hint" data-i18n="registerPasswordHint">
+                            Use at least 8 characters.
+                        </small>
+
+                        <small class="field-error" id="registerPasswordError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword" data-i18n="registerConfirmPasswordLabel">
+                            Confirm password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Enter your password again"
+                                data-i18n-placeholder="registerConfirmPasswordPlaceholder"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-password-toggle="confirmPassword"
+                                data-i18n="loginShowPassword"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                        <small class="field-error" id="confirmPasswordError"></small>
+
+                    </div>
+
+
+                    <label class="checkbox-label terms-label">
+
+                        <input
+                            type="checkbox"
+                            id="acceptTerms"
+                            name="acceptTerms"
+                            required
+                        >
+
+                        <span data-i18n="registerTerms">
+                            I agree to use this platform responsibly and
+                            understand that climate predictions may have
+                            limitations.
+                        </span>
+
+                    </label>
+
+                    <small class="field-error" id="termsError"></small>
+
+
+                    <div
+                        class="form-message"
+                        id="registerMessage"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-large auth-submit"
+                        id="registerSubmit"
+                        data-i18n="registerSubmit"
+                    >
+                        Create Account
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                </form>
+
+
+                <div class="auth-divider">
+
+                    <span data-i18n="registerAlreadyRegistered">
+                        ALREADY REGISTERED?
+                    </span>
+
+                </div>
+
+
+                <p class="auth-switch">
+
+                    <span data-i18n="registerHaveAccount">
+                        Already have an account?
+                    </span>
+
+                    <a href="login.html" data-i18n="registerSignInLink">
+                        Sign in
+                    </a>
+
+                </p>
+
+
+                <p class="auth-back">
+
+                    <a href="index.html" data-i18n="registerBackHome">
+                        ← Back to homepage
+                    </a>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="auth-footer">
+
+        <p>
+            &copy; <span id="currentYear">2026</span>
+            <span data-i18n="registerFooter">
+                El Niño AI. Climate intelligence for a changing world.
+            </span>
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Sign in to El Niño AI Climate Intelligence Platform."
+    >
+
+    <meta name="theme-color" content="#0B172A">
+
+    <title data-i18n-page-title="loginPageTitle">Login | El Niño AI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script src="js/translations.js" defer></script>
+    <script src="js/auth.js" defer></script>
+</head>
+
+<body class="auth-page">
+
+    <header class="site-header">
+
+        <nav class="navbar container" aria-label="Main navigation">
+
+            <a href="index.html" class="brand">
+
+                <span class="brand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path
+                            d="M24 4C24 4 10 20 10 29C10 36.732 16.268 43 24 43C31.732 43 38 36.732 38 29C38 20 24 4 24 4Z"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        />
+                        <path
+                            d="M19 33L23 37L32 27"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </span>
+
+                <span class="brand-text">
+                    <strong>El Niño <span>AI</span></strong>
+                    <small>CLIMATE INTELLIGENCE</small>
+                </span>
+
+            </a>
+
+            <a href="register.html" class="btn btn-primary" data-i18n="loginCreateAccount">
+                Create Account
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="auth-main">
+
+        <section class="auth-container container">
+
+            <div class="auth-intro">
+
+                <span class="section-label" data-i18n="loginPlatformLabel">
+                    CLIMATE INTELLIGENCE PLATFORM
+                </span>
+
+                <h1>
+                    <span data-i18n="loginWelcome">Welcome back to</span>
+                    <span>El Niño AI.</span>
+                </h1>
+
+                <p data-i18n="loginDescription">
+                    Sign in to explore climate patterns, historical
+                    observations, and regional climate intelligence.
+                </p>
+
+                <div class="auth-feature-list">
+
+                    <div class="auth-feature">
+
+                        <span aria-hidden="true">01</span>
+
+                        <div>
+                            <strong data-i18n="loginFeature1">Climate Analytics</strong>
+                            <p data-i18n="loginFeature1Description">
+                                Explore rainfall and temperature trends.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="auth-feature">
+
+                        <span aria-hidden="true">02</span>
+
+                        <div>
+                            <strong data-i18n="loginFeature2">Impact Assessment</strong>
+                            <p data-i18n="loginFeature2Description">
+                                Investigate potential regional climate risks.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="auth-feature">
+
+                        <span aria-hidden="true">03</span>
+
+                        <div>
+                            <strong data-i18n="loginFeature3">Evidence-Based Insights</strong>
+                            <p data-i18n="loginFeature3Description">
+                                Understand results using available data.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="auth-card">
+
+                <div class="auth-card-heading">
+
+                    <span class="auth-icon" aria-hidden="true">↗</span>
+
+                    <h2 data-i18n="loginHeading">Sign in</h2>
+
+                    <p data-i18n="loginCardDescription">
+                        Enter your account details to continue.
+                    </p>
+
+                </div>
+
+
+                <form id="loginForm" novalidate>
+
+                    <div class="form-group">
+
+                        <label for="loginEmail" data-i18n="loginEmailLabel">
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            name="email"
+                            placeholder="you@example.com"
+                            data-i18n-placeholder="loginEmailPlaceholder"
+                            autocomplete="email"
+                            required
+                        >
+
+                        <small class="field-error" id="loginEmailError"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="loginPassword" data-i18n="loginPasswordLabel">
+                            Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                name="password"
+                                placeholder="Enter your password"
+                                data-i18n-placeholder="loginPasswordPlaceholder"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-password-toggle="loginPassword"
+                                data-i18n="loginShowPassword"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                        <small class="field-error" id="loginPasswordError"></small>
+
+                    </div>
+
+
+                    <div class="form-options">
+
+                        <label class="checkbox-label">
+
+                            <input type="checkbox" id="rememberMe">
+
+                            <span data-i18n="loginRememberMe">Remember me</span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="form-message"
+                        id="loginMessage"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-large auth-submit"
+                        id="loginSubmit"
+                        data-i18n="loginSubmit"
+                    >
+                        Sign In
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                </form>
+
+
+                <div class="auth-divider">
+                    <span data-i18n="loginNewToPlatform">
+                        NEW TO EL NIÑO AI?
+                    </span>
+                </div>
+
+
+                <p class="auth-switch">
+
+                    <span data-i18n="loginNoAccount">Don't have an account?</span>
+
+                    <a href="register.html" data-i18n="loginCreateOne">
+                        Create one
+                    </a>
+
+                </p>
+
+
+                <p class="auth-back">
+
+                    <a href="index.html" data-i18n="loginBackHome">
+                        ← Back to homepage
+                    </a>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="auth-footer">
+
+        <p>
+            &copy; <span id="currentYear">2026</span>
+            <span data-i18n="loginFooter">
+                El Niño AI. Climate intelligence for a changing world.
+            </span>
+        </p>
+
+    </footer>
+
+</body>
+</html>

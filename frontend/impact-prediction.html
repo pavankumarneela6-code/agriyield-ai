@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#0B172A">
+
+    <title>Temperature Prediction | El Niño AI</title>
+
+    <!-- Existing Project Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+   
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Premium page-specific stylesheet -->
+    <link rel="stylesheet" href="css/impact-prediction.css">
+
+    <!-- Existing JavaScript -->
+    <script src="js/main.js" defer></script>
+    <script src="js/translations.js" defer></script>
+    <script src="js/impact-prediction.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="site-header" id="home">
+        <nav class="navbar container" aria-label="Main navigation">
+
+            <a href="index.html" class="brand">
+                <span class="brand-text">
+                    <strong>El Niño <span>AI</span></strong>
+                    <small>CLIMATE INTELLIGENCE</small>
+                </span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="navMenu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link" data-i18n="navHome">Home</a>
+                <a href="el-nino-analysis.html" class="nav-link" data-i18n="navEnso">
+                    El Niño Analysis
+                </a>
+                <a href="climate-analysis.html" class="nav-link" data-i18n="navClimate">
+                    Climate Analysis
+                </a>
+                <a href="impact-prediction.html" class="nav-link active" data-i18n="navPredictions">
+                    Predictions
+                </a>
+                <a href="historical-data.html" class="nav-link" data-i18n="navHistory">
+                    Historical Data
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main class="prediction-page">
+        <div class="prediction-container">
+
+            <!-- Back to Dashboard -->
+            <div class="prediction-back-wrapper">
+                <a href="dashboard.html" class="back-dashboard-button">
+                    <span aria-hidden="true">←</span>
+                    <span>Back to Dashboard</span>
+                </a>
+            </div>
+
+            <!-- Page Heading -->
+            <section class="prediction-heading">
+
+                <span class="prediction-eyebrow" data-i18n="headingEyebrow">
+                    Machine Learning · Temperature Analysis
+                </span>
+
+                <h1>
+                    <span class="heading-plain" data-i18n="headingTemperature">Temperature</span>
+                    <span class="heading-accent" data-i18n="headingPrediction">Prediction</span>
+                </h1>
+
+                <p data-i18n="headingIntro">
+                    Explore an experimental Ridge Regression model that
+                    estimates temperature anomalies using historical ENSO
+                    indicators and regional climate features.
+                </p>
+
+                <div class="prediction-status" id="modelStatus">
+                    <span class="status-dot" id="modelStatusDot"></span>
+                    <span id="modelStatusText" data-i18n="statusCheckingModel">Checking model availability...</span>
+                </div>
+
+            </section>
+
+
+            <div class="prediction-layout">
+
+                <!-- Prediction Input Form -->
+                <section class="prediction-card">
+
+                    <h2 data-i18n="inputTitle">Climate Input Parameters</h2>
+
+                    <p class="prediction-description" data-i18n="inputDescription">
+                        Climate inputs load automatically from the latest complete
+                        ERA5 season and its matching RONI record. Review the values
+                        before running the experimental prediction.
+                    </p>
+
+                    <form id="temperaturePredictionForm">
+
+                        <div class="prediction-form-grid">
+
+                            <div class="prediction-field">
+                                <label for="roni_value" data-i18n="labelRoniCurrent">
+                                    Current RONI value
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="roni_value"
+                                    name="roni_value"
+                                    step="any"
+                                    value=""
+                                    required
+                                >
+
+                                <small data-i18n="helpEnsoIndex">ENSO-related index</small>
+                            </div>
+
+
+                            <div class="prediction-field">
+                                <label for="roni_previous_season" data-i18n="labelRoniPrevious">
+                                    Previous-season RONI
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="roni_previous_season"
+                                    name="roni_previous_season"
+                                    step="any"
+                                    value=""
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="prediction-field">
+                                <label for="temperature_anomaly_3month_c" data-i18n="labelTemperature3Month">
+                                    3-month temperature anomaly (°C)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="temperature_anomaly_3month_c"
+                                    name="temperature_anomaly_3month_c"
+                                    step="any"
+                                    value=""
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="prediction-field">
+                                <label for="temperature_anomaly_previous_season_c" data-i18n="labelTemperaturePrevious">
+                                    Previous-season temperature anomaly (°C)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="temperature_anomaly_previous_season_c"
+                                    name="temperature_anomaly_previous_season_c"
+                                    step="any"
+                                    value=""
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="prediction-field">
+                                <label for="precipitation_anomaly_3month_mm" data-i18n="labelPrecipitation3Month">
+                                    3-month precipitation anomaly (mm)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="precipitation_anomaly_3month_mm"
+                                    name="precipitation_anomaly_3month_mm"
+                                    step="any"
+                                    value=""
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="prediction-field">
+                                <label for="humidity_anomaly_pp" data-i18n="labelHumidityAnomaly">
+                                    Humidity anomaly
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="humidity_anomaly_pp"
+                                    name="humidity_anomaly_pp"
+                                    step="any"
+                                    value=""
+                                    required
+                                >
+
+                                <small data-i18n="helpPercentagePoints">Percentage-point anomaly</small>
+                            </div>
+
+
+                            <div class="prediction-field">
+                                <label for="wind_anomaly_kmh" data-i18n="labelWindAnomaly">
+                                    Wind-speed anomaly (km/h)
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="wind_anomaly_kmh"
+                                    name="wind_anomaly_kmh"
+                                    step="any"
+                                    value=""
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="prediction-field">
+                                <label for="season_month" data-i18n="labelSeasonMonth">
+                                    Input-season reference month
+                                </label>
+
+                                <select
+                                    id="season_month"
+                                    name="season_month"
+                                    required
+                                >
+                                    <option value="1" data-i18n="monthJan">January</option>
+                                    <option value="2" data-i18n="monthFeb">February</option>
+                                    <option value="3" data-i18n="monthMar">March</option>
+                                    <option value="4" data-i18n="monthApr">April</option>
+                                    <option value="5" data-i18n="monthMay">May</option>
+                                    <option value="6" data-i18n="monthJun">June</option>
+                                    <option value="7" data-i18n="monthJul">July</option>
+                                    <option value="8" data-i18n="monthAug">August</option>
+                                    <option value="9" data-i18n="monthSep">September</option>
+                                    <option value="10" data-i18n="monthOct">October</option>
+                                    <option value="11" data-i18n="monthNov">November</option>
+                                    <option value="12" data-i18n="monthDec">December</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <div class="prediction-actions">
+
+                            <button
+                                type="submit"
+                                class="prediction-button prediction-button-primary"
+                                id="predictButton" data-i18n="buttonRun"
+                                disabled
+                            >
+                                Run Temperature Prediction
+                            </button>
+
+                            <button
+                                type="reset"
+                                class="prediction-button prediction-button-secondary"
+                                data-i18n="buttonReset"
+                            >
+                                Reset Inputs
+                            </button>
+
+                        </div>
+
+                        <p
+                            id="predictionMessage"
+                            class="prediction-message"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+
+                    </form>
+
+
+                    <div class="prediction-notice" id="predictionNotice" role="status" aria-live="polite" data-i18n="noticeLoadingInputs">
+                        Loading historical ERA5 weather and RONI inputs from PostgreSQL.
+                        These are the latest available historical inputs, not live weather measurements.
+                    </div>
+
+                </section>
+
+
+                <!-- Model Information -->
+                <div>
+
+                    <section class="prediction-card prediction-side-card">
+
+                        <h2 data-i18n="modelHowTitle">How the model works</h2>
+
+                        <p class="prediction-description" data-i18n="modelHowDescription">
+                            Ridge Regression estimates a numerical temperature
+                            anomaly from the supplied climate features.
+                        </p>
+
+
+                        <div class="prediction-feature">
+                            <div class="prediction-feature-icon">01</div>
+
+                            <div>
+                                <h3 data-i18n="featureClimateTitle">Climate indicators</h3>
+
+                                <p data-i18n="featureClimateDescription">
+                                    Uses RONI, temperature, precipitation,
+                                    humidity, and wind anomalies.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="prediction-feature">
+                            <div class="prediction-feature-icon">02</div>
+
+                            <div>
+                                <h3 data-i18n="featureSeasonTitle">Seasonal information</h3>
+
+                                <p data-i18n="featureSeasonDescription">
+                                    Encodes the reference month using
+                                    seasonal sine and cosine features.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="prediction-feature">
+                            <div class="prediction-feature-icon">03</div>
+
+                            <div>
+                                <h3 data-i18n="featureAnomalyTitle">Temperature anomaly</h3>
+
+                                <p data-i18n="featureAnomalyDescription">
+                                    Returns an estimated anomaly in degrees
+                                    Celsius, relative to the model's
+                                    specified baseline.
+                                </p>
+                            </div>
+                        </div>
+
+                    </section>
+
+
+                    <!-- API Prediction Result -->
+                    <section
+                        class="result-panel"
+                        id="predictionResult"
+                        hidden
+                        aria-live="polite"
+                    >
+
+                        <span class="result-kicker" data-i18n="resultKicker">
+                            Prediction received from API
+                        </span>
+
+                        <h2 class="result-title" data-i18n="resultTitle">
+                            Estimated Temperature Anomaly
+                        </h2>
+
+                        <div class="result-value" id="predictedAnomaly">
+                            —
+                        </div>
+
+                        <p
+                            class="result-explanation"
+                            id="predictionTarget"
+                        ></p>
+
+
+                        <div class="result-metrics">
+
+                            <div class="result-metric">
+                                <span data-i18n="metricMae">Historical Test MAE</span>
+                                <strong id="modelMAE">—</strong>
+                            </div>
+
+                            <div class="result-metric">
+                                <span data-i18n="metricRmse">Historical Test RMSE</span>
+                                <strong id="modelRMSE">—</strong>
+                            </div>
+
+                            <div class="result-metric">
+                                <span data-i18n="metricR2">Test R²</span>
+                                <strong id="modelR2">—</strong>
+                            </div>
+
+                            <div class="result-metric">
+                                <span data-i18n="metricAlpha">Selected Alpha</span>
+                                <strong id="modelAlpha">—</strong>
+                            </div>
+
+                        </div>
+
+
+                        <p class="result-explanation result-baseline">
+                            <span data-i18n="baselinePeriod">Baseline period:</span>
+                            <strong id="modelBaseline">—</strong>
+                        </p>
+
+                        <p class="result-warning" id="predictionDisclaimer"></p>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+
+            <footer class="prediction-footer">
+                <span data-i18n="footerTitle">El Niño AI · Climate Intelligence &amp; Impact Prediction System</span>
+                <br>
+                <span data-i18n="footerNote">Experimental model output is for research and informational purposes. It is not an official weather forecast.</span>
+            </footer>
+
+        </div>
+    </main>
+
+</body>
+</html>

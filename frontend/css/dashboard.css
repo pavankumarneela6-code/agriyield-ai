@@ -1,0 +1,3050 @@
+/* =========================================================
+   EL NINO AI — PREMIUM CLIMATE INTELLIGENCE DASHBOARD
+   PART 1/3 — CORE DESIGN, SIDEBAR, TOPBAR & HERO
+========================================================= */
+
+/* =========================
+   01. DESIGN SYSTEM
+========================= */
+
+.climate-dashboard {
+    --bg-main: #070d18;
+    --bg-secondary: #0a1423;
+    --bg-sidebar: #080f1c;
+
+    --surface: #101c2d;
+    --surface-soft: #132238;
+    --surface-hover: #182a40;
+
+    --border: rgba(166, 190, 218, 0.11);
+    --border-strong: rgba(166, 190, 218, 0.19);
+
+    --text-primary: #f1f6fc;
+    --text-secondary: #9aabc0;
+    --text-muted: #64778f;
+
+    --accent: #39d6c2;
+    --accent-bright: #61f0d7;
+    --accent-soft: rgba(57, 214, 194, 0.12);
+
+    --blue: #5a9cff;
+    --purple: #a78bfa;
+    --orange: #ffad70;
+    --green: #55d69a;
+    --cyan: #54d9ed;
+
+    --sidebar-width: 258px;
+    --topbar-height: 78px;
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+    --radius-xl: 28px;
+
+    --shadow-panel:
+        0 15px 45px rgba(0, 0, 0, 0.19);
+
+    --transition:
+        0.28s cubic-bezier(0.2, 0.75, 0.25, 1);
+
+    min-height: 100vh;
+    color: var(--text-primary);
+    background:
+        radial-gradient(
+            ellipse at 75% 5%,
+            rgba(31, 110, 133, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 15% 75%,
+            rgba(36, 80, 135, 0.08),
+            transparent 35%
+        ),
+        var(--bg-main);
+
+    font-family: "DM Sans", sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.climate-dashboard *,
+.climate-dashboard *::before,
+.climate-dashboard *::after {
+    box-sizing: border-box;
+}
+
+.climate-dashboard button,
+.climate-dashboard input,
+.climate-dashboard select {
+    font: inherit;
+}
+
+.climate-dashboard button {
+    cursor: pointer;
+}
+
+.climate-dashboard a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.climate-dashboard button:focus-visible,
+.climate-dashboard a:focus-visible,
+.climate-dashboard input:focus-visible,
+.climate-dashboard select:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+/* =========================
+   02. MAIN LAYOUT
+========================= */
+
+.climate-dashboard .dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+.climate-dashboard .dashboard-main {
+    flex: 1;
+    min-width: 0;
+    margin-left: var(--sidebar-width);
+    transition: margin-left var(--transition);
+}
+
+.climate-dashboard .dashboard-content {
+    width: 100%;
+    max-width: 1660px;
+    margin: 0 auto;
+    padding: 34px 42px 28px;
+}
+
+/* =========================
+   03. PREMIUM SIDEBAR
+========================= */
+
+.climate-dashboard .dashboard-sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 27px 17px 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0b1727 0%,
+            #091321 55%,
+            #080f1c 100%
+        );
+
+    border-right: 1px solid var(--border);
+
+    transition:
+        transform var(--transition),
+        width var(--transition);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.climate-dashboard .dashboard-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.climate-dashboard .dashboard-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(150, 180, 210, 0.18);
+    border-radius: 10px;
+}
+
+/* Brand */
+
+.climate-dashboard .dashboard-brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 3px 10px 29px;
+    margin-bottom: 27px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.climate-dashboard .brand-symbol {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: #06211f;
+    font-size: 21px;
+    font-weight: 800;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #75f5d9,
+            #29bcae
+        );
+
+    box-shadow:
+        0 0 25px rgba(57, 214, 194, 0.19),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.climate-dashboard .dashboard-brand strong {
+    display: block;
+    color: #f4f8ff;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.climate-dashboard .dashboard-brand strong span {
+    color: var(--accent);
+}
+
+.climate-dashboard .dashboard-brand small {
+    display: block;
+    margin-top: 5px;
+
+    color: #71869e;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.55px;
+}
+
+/* Sidebar section */
+
+.climate-dashboard .sidebar-section-label {
+    padding: 0 12px;
+    margin: 0 0 13px;
+
+    color: #63768d;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+}
+
+/* Navigation */
+
+.climate-dashboard .sidebar-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.climate-dashboard .sidebar-link {
+    min-height: 46px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 0 13px;
+
+    color: #8fa2b9;
+    font-size: 12px;
+    font-weight: 600;
+
+    border: 1px solid transparent;
+    border-radius: 11px;
+
+    background: transparent;
+
+    position: relative;
+    transition:
+        color var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        transform var(--transition);
+}
+
+.climate-dashboard .sidebar-link::before {
+    content: "";
+    width: 3px;
+    height: 0;
+
+    position: absolute;
+    left: -1px;
+    top: 50%;
+
+    background: var(--accent);
+    border-radius: 0 5px 5px 0;
+
+    transform: translateY(-50%);
+    transition: height var(--transition);
+}
+
+.climate-dashboard .sidebar-link:hover {
+    color: #e9f5ff;
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(255, 255, 255, 0.055);
+    transform: translateX(3px);
+}
+
+.climate-dashboard .sidebar-link.active {
+    color: var(--accent-bright);
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(57, 214, 194, 0.15),
+            rgba(57, 214, 194, 0.035)
+        );
+
+    border-color: rgba(57, 214, 194, 0.16);
+}
+
+.climate-dashboard .sidebar-link.active::before {
+    height: 23px;
+}
+
+.climate-dashboard .nav-icon {
+    width: 21px;
+    height: 21px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* Sidebar bottom */
+
+.climate-dashboard .sidebar-bottom {
+    margin-top: auto;
+    padding-top: 25px;
+}
+
+.climate-dashboard .sidebar-help {
+    padding: 16px;
+
+    border: 1px solid rgba(57, 214, 194, 0.15);
+    border-radius: 15px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(57, 214, 194, 0.12),
+            transparent 60%
+        ),
+        rgba(17, 35, 52, 0.8);
+}
+
+.climate-dashboard .sidebar-help strong {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #dcece9;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.climate-dashboard .sidebar-help p {
+    margin: 0 0 12px;
+
+    color: #8399aa;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.climate-dashboard .sidebar-help a {
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.climate-dashboard .sidebar-logout {
+    width: 100%;
+    min-height: 43px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 13px;
+    padding: 0 13px;
+
+    color: #a3afbf;
+    font-size: 12px;
+    font-weight: 600;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    background: transparent;
+    transition: var(--transition);
+}
+
+.climate-dashboard .sidebar-logout:hover {
+    color: #ff8b8b;
+    background: rgba(255, 92, 92, 0.08);
+    border-color: rgba(255, 92, 92, 0.12);
+}
+
+/* =========================
+   04. TOP NAVIGATION
+========================= */
+
+.climate-dashboard .dashboard-topbar {
+    height: var(--topbar-height);
+
+    position: sticky;
+    top: 0;
+    z-index: 80;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 42px;
+
+    background: rgba(7, 13, 24, 0.84);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+}
+
+.climate-dashboard .topbar-left,
+.climate-dashboard .topbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.climate-dashboard .topbar-left {
+    gap: 17px;
+}
+
+.climate-dashboard .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #8295ab;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.climate-dashboard .breadcrumb span:last-child {
+    color: #e9f2fa;
+    font-weight: 700;
+}
+
+.climate-dashboard #sidebarToggle {
+    width: 37px;
+    height: 37px;
+
+    display: grid;
+    place-items: center;
+
+    color: #a8bbcf;
+    font-size: 17px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.035);
+    transition: var(--transition);
+}
+
+.climate-dashboard #sidebarToggle:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: rgba(57, 214, 194, 0.25);
+}
+
+/* Topbar right */
+
+.climate-dashboard .topbar-right {
+    gap: 17px;
+}
+
+.climate-dashboard .language-switcher select,
+.climate-dashboard #languageSelect {
+    min-height: 35px;
+    padding: 0 10px;
+
+    color: #aebed0;
+    font-size: 11px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: #101c2d;
+    cursor: pointer;
+}
+
+.climate-dashboard #languageSelect option {
+    color: #eaf2fb;
+    background: #101c2d;
+}
+
+.climate-dashboard .system-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #9bafc0;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.climate-dashboard .indicator-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+    background: var(--green);
+
+    box-shadow: 0 0 12px rgba(85, 214, 154, 0.65);
+    animation: statusPulse 2.5s ease-in-out infinite;
+}
+
+.climate-dashboard .profile-divider {
+    width: 1px;
+    height: 29px;
+    background: var(--border-strong);
+}
+
+.climate-dashboard #profileAvatar {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    color: #06211f;
+    font-size: 12px;
+    font-weight: 800;
+
+    border-radius: 12px;
+
+    background: linear-gradient(145deg, #8af2d8, #40bcae);
+}
+
+.climate-dashboard .profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.climate-dashboard #dashboardUserName {
+    color: #e9f1f8;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.climate-dashboard #dashboardUserEmail {
+    color: #71859b;
+    font-size: 9px;
+}
+
+/* =========================
+   05. WELCOME HERO SECTION
+========================= */
+
+.climate-dashboard .welcome-section {
+    min-height: 290px;
+
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    margin-bottom: 36px;
+    padding: 39px 42px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(93, 168, 191, 0.19);
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #10273a 0%,
+            #102c3c 45%,
+            #123747 100%
+        );
+
+    box-shadow:
+        0 22px 65px rgba(0, 0, 0, 0.19),
+        inset 0 1px rgba(255, 255, 255, 0.055);
+}
+
+.climate-dashboard .welcome-section::before {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    width: 490px;
+    height: 490px;
+
+    top: -290px;
+    right: 8%;
+
+    border: 1px solid rgba(115, 225, 213, 0.10);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 45px rgba(115, 225, 213, 0.025),
+        0 0 0 95px rgba(115, 225, 213, 0.018);
+}
+
+.climate-dashboard .welcome-section::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    inset: 0;
+
+    opacity: 0.12;
+
+    background-image:
+        linear-gradient(rgba(170, 225, 230, 0.13) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(170, 225, 230, 0.13) 1px, transparent 1px);
+
+    background-size: 38px 38px;
+
+    mask-image: linear-gradient(
+        90deg,
+        transparent,
+        black 65%,
+        black
+    );
+}
+
+.climate-dashboard .welcome-copy {
+    max-width: 620px;
+    position: relative;
+    z-index: 2;
+}
+
+.climate-dashboard .welcome-copy .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+    color: #79e5d4;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2.1px;
+    text-transform: uppercase;
+}
+
+.climate-dashboard .eyebrow-line {
+    width: 26px;
+    height: 2px;
+    background: var(--accent);
+}
+
+.climate-dashboard .welcome-copy h1 {
+    max-width: 610px;
+    margin: 0;
+
+    color: #f4f8fb;
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(29px, 3.1vw, 43px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1.8px;
+}
+
+.climate-dashboard .welcome-copy h1 > span:last-child {
+    color: #6ee4d0;
+}
+
+.climate-dashboard .welcome-copy p {
+    max-width: 490px;
+    margin: 15px 0 23px;
+
+    color: #a4bac8;
+    font-size: 12px;
+    line-height: 1.85;
+}
+
+/* Hero action buttons */
+
+.climate-dashboard .welcome-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+}
+
+.climate-dashboard .primary-action,
+.climate-dashboard .secondary-action {
+    min-height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 0 17px;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
+}
+
+.climate-dashboard .primary-action {
+    color: #06241f;
+    border: 1px solid #70ead5;
+
+    background: linear-gradient(135deg, #83f0d9, #45cdbb);
+
+    box-shadow: 0 7px 22px rgba(57, 214, 194, 0.16);
+}
+
+.climate-dashboard .primary-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(57, 214, 194, 0.25);
+}
+
+.climate-dashboard .secondary-action {
+    color: #d3e5ec;
+
+    border: 1px solid rgba(185, 221, 231, 0.23);
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.climate-dashboard .secondary-action:hover {
+    background: rgba(255, 255, 255, 0.10);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   06. ANIMATED CLIMATE GLOBE
+========================= */
+
+.climate-dashboard .welcome-visual {
+    width: 265px;
+    height: 230px;
+    flex-shrink: 0;
+
+    position: relative;
+
+    display: grid;
+    place-items: center;
+}
+
+.climate-dashboard .visual-orbit {
+    width: 205px;
+    height: 205px;
+
+    position: absolute;
+
+    border: 1px solid rgba(111, 227, 213, 0.22);
+    border-radius: 50%;
+
+    animation: orbitRotate 28s linear infinite;
+}
+
+.climate-dashboard .visual-orbit::before {
+    content: "";
+
+    width: 9px;
+    height: 9px;
+
+    position: absolute;
+    top: 25px;
+    left: 25px;
+
+    border-radius: 50%;
+    background: #83f5df;
+
+    box-shadow: 0 0 18px rgba(131, 245, 223, 0.9);
+}
+
+.climate-dashboard .visual-globe {
+    width: 148px;
+    height: 148px;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(137, 234, 220, 0.48);
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 33% 28%,
+            rgba(105, 224, 207, 0.42),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 60% 65%,
+            rgba(42, 143, 158, 0.75),
+            transparent 60%
+        ),
+        linear-gradient(
+            140deg,
+            #1a6c79,
+            #123e5a 65%,
+            #102b4a
+        );
+
+    box-shadow:
+        0 0 35px rgba(70, 214, 198, 0.17),
+        inset -18px -12px 32px rgba(2, 12, 30, 0.5),
+        inset 8px 8px 25px rgba(140, 247, 224, 0.14);
+}
+
+.climate-dashboard .visual-globe::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at 30% 42%,
+            rgba(113, 215, 178, 0.75) 0 8%,
+            transparent 9%
+        ),
+        radial-gradient(
+            ellipse at 62% 29%,
+            rgba(113, 215, 178, 0.55) 0 12%,
+            transparent 13%
+        ),
+        radial-gradient(
+            ellipse at 66% 69%,
+            rgba(113, 215, 178, 0.48) 0 10%,
+            transparent 11%
+        );
+
+    opacity: 0.75;
+}
+
+.climate-dashboard .globe-longitude {
+    position: absolute;
+    inset: 0 28%;
+
+    border-left: 1px solid rgba(156, 246, 224, 0.26);
+    border-right: 1px solid rgba(156, 246, 224, 0.26);
+
+    border-radius: 50%;
+}
+
+.climate-dashboard .globe-latitude {
+    position: absolute;
+    top: 33%;
+    left: 0;
+    right: 0;
+
+    height: 34%;
+
+    border-top: 1px solid rgba(156, 246, 224, 0.23);
+    border-bottom: 1px solid rgba(156, 246, 224, 0.23);
+
+    border-radius: 50%;
+}
+
+.climate-dashboard .globe-highlight {
+    position: absolute;
+    top: 13px;
+    left: 21px;
+
+    width: 44px;
+    height: 17px;
+
+    border-radius: 50%;
+    background: rgba(190, 255, 238, 0.25);
+    filter: blur(8px);
+    transform: rotate(-35deg);
+}
+
+.climate-dashboard .visual-caption {
+    position: absolute;
+    bottom: -3px;
+    right: 0;
+
+    color: #8bb7c0;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+/* =========================
+   07. SIDEBAR COLLAPSED STATE
+========================= */
+
+.climate-dashboard .dashboard-layout.sidebar-collapsed {
+    --sidebar-width: 82px;
+}
+
+.climate-dashboard .dashboard-layout.sidebar-collapsed .dashboard-sidebar {
+    width: 82px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.climate-dashboard .dashboard-layout.sidebar-collapsed .dashboard-brand {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.climate-dashboard .dashboard-layout.sidebar-collapsed .dashboard-brand strong,
+.climate-dashboard .dashboard-layout.sidebar-collapsed .dashboard-brand small,
+.climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-section-label,
+.climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-link span:not(.nav-icon),
+.climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-help,
+.climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-logout span {
+    display: none;
+}
+
+.climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-link,
+.climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-logout {
+    justify-content: center;
+    padding: 0;
+}
+
+.climate-dashboard .dashboard-layout.sidebar-collapsed .dashboard-brand {
+    border-bottom: 0;
+}
+
+/* =========================
+   08. MOTION
+========================= */
+
+@keyframes statusPulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 12px rgba(85, 214, 154, 0.65);
+    }
+
+    50% {
+        opacity: 0.55;
+        box-shadow: 0 0 4px rgba(85, 214, 154, 0.25);
+    }
+}
+
+@keyframes orbitRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dashboardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.climate-dashboard .welcome-section {
+    animation: dashboardReveal 0.65s ease both;
+}
+
+/* Accessibility: respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    .climate-dashboard *,
+    .climate-dashboard *::before,
+    .climate-dashboard *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================================
+   EL NINO AI — PREMIUM CLIMATE INTELLIGENCE DASHBOARD
+   PART 2/3 — METRICS, ANALYTICS & ENSO STATUS
+========================================================= */
+
+
+/* =========================
+   09. SECTION HEADINGS
+========================= */
+
+.climate-dashboard .section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 19px;
+}
+
+.climate-dashboard .section-heading h2,
+.climate-dashboard .modules-heading h2 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.55px;
+}
+
+.climate-dashboard .section-heading p,
+.climate-dashboard .modules-heading p {
+    margin: 6px 0 0;
+
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.climate-dashboard .location-picker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.climate-dashboard #openLocationPickerButton {
+    min-height: 37px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 0 13px;
+
+    color: #a9c9d1;
+    font-size: 10px;
+    font-weight: 700;
+
+    border: 1px solid rgba(57, 214, 194, 0.19);
+    border-radius: 9px;
+
+    background: rgba(57, 214, 194, 0.065);
+
+    transition: var(--transition);
+}
+
+.climate-dashboard #openLocationPickerButton:hover {
+    color: var(--accent-bright);
+    border-color: rgba(57, 214, 194, 0.42);
+    background: rgba(57, 214, 194, 0.12);
+    transform: translateY(-2px);
+}
+
+.climate-dashboard #selectedLocationName {
+    color: #d9e7f1;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.climate-dashboard .data-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 10px;
+
+    color: #8fa8bd;
+    font-size: 9px;
+    font-weight: 700;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    background: rgba(255, 255, 255, 0.025);
+}
+
+
+/* =========================
+   10. CLIMATE METRIC CARDS
+========================= */
+
+.climate-dashboard .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+
+    margin-bottom: 35px;
+}
+
+.climate-dashboard .metric-card {
+    min-width: 0;
+    min-height: 178px;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    padding: 20px 19px 17px;
+
+    border: 1px solid var(--border);
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 37, 57, 0.96),
+            rgba(13, 26, 43, 0.98)
+        );
+
+    box-shadow: 0 9px 28px rgba(0, 0, 0, 0.11);
+
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.climate-dashboard .metric-card::before {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    width: 135px;
+    height: 135px;
+
+    right: -65px;
+    top: -75px;
+
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 17px rgba(255, 255, 255, 0.018),
+        0 0 0 35px rgba(255, 255, 255, 0.012);
+
+    transition: transform 0.6s ease;
+}
+
+.climate-dashboard .metric-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(91, 205, 196, 0.29);
+
+    box-shadow:
+        0 17px 38px rgba(0, 0, 0, 0.23),
+        0 0 22px rgba(57, 214, 194, 0.035);
+}
+
+.climate-dashboard .metric-card:hover::before {
+    transform: scale(1.25);
+}
+
+.climate-dashboard .metric-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.climate-dashboard .metric-icon {
+    width: 39px;
+    height: 39px;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 17px;
+
+    border-radius: 12px;
+    border: 1px solid transparent;
+}
+
+.climate-dashboard .metric-icon.teal-icon {
+    color: #5ce4cd;
+    background: rgba(57, 214, 194, 0.12);
+    border-color: rgba(57, 214, 194, 0.14);
+}
+
+.climate-dashboard .metric-icon.blue-icon {
+    color: #77b4ff;
+    background: rgba(90, 156, 255, 0.12);
+    border-color: rgba(90, 156, 255, 0.15);
+}
+
+.climate-dashboard .metric-icon.purple-icon {
+    color: #c1a4ff;
+    background: rgba(167, 139, 250, 0.12);
+    border-color: rgba(167, 139, 250, 0.15);
+}
+
+.climate-dashboard .metric-icon.orange-icon {
+    color: #ffb77f;
+    background: rgba(255, 173, 112, 0.12);
+    border-color: rgba(255, 173, 112, 0.15);
+}
+
+.climate-dashboard .metric-label {
+    color: #8ea2b8;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+}
+
+.climate-dashboard .metric-value {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+
+    margin-bottom: 5px;
+
+    color: #f0f6fc;
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(23px, 2vw, 30px);
+    font-weight: 800;
+    letter-spacing: -1.1px;
+    line-height: 1.25;
+}
+
+.climate-dashboard .metric-text-value {
+    font-size: 22px;
+    letter-spacing: -0.7px;
+}
+
+.climate-dashboard .metric-description {
+    color: #73879e;
+    font-size: 9px;
+    line-height: 1.55;
+}
+
+.climate-dashboard .metric-footer {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-top: 13px;
+    padding-top: 11px;
+
+    border-top: 1px solid rgba(166, 190, 218, 0.075);
+
+    color: #8fa7b8;
+    font-size: 9px;
+}
+
+.climate-dashboard .metric-footer-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: var(--accent);
+
+    box-shadow: 0 0 9px rgba(57, 214, 194, 0.5);
+}
+
+
+/* =========================
+   11. ANALYTICS GRID
+========================= */
+
+.climate-dashboard .analytics-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.85fr);
+    gap: 17px;
+
+    margin-bottom: 38px;
+}
+
+.climate-dashboard .panel {
+    min-width: 0;
+    position: relative;
+
+    padding: 23px;
+
+    border: 1px solid var(--border);
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17, 32, 51, 0.97),
+            rgba(12, 24, 40, 0.98)
+        );
+
+    box-shadow: var(--shadow-panel);
+}
+
+.climate-dashboard .panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+
+    margin-bottom: 22px;
+}
+
+.climate-dashboard .panel-heading h3 {
+    margin: 0;
+
+    color: #eaf2fa;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.35px;
+}
+
+.climate-dashboard .panel-heading p {
+    margin: 6px 0 0;
+
+    color: #758ba2;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.climate-dashboard .panel-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    flex-shrink: 0;
+
+    padding: 7px 10px;
+
+    color: #8bdccc;
+    font-size: 9px;
+    font-weight: 700;
+
+    border: 1px solid rgba(57, 214, 194, 0.16);
+    border-radius: 7px;
+
+    background: rgba(57, 214, 194, 0.07);
+}
+
+
+/* =========================
+   12. CLIMATE TREND CHART
+========================= */
+
+.climate-dashboard .trend-panel {
+    min-height: 365px;
+}
+
+.climate-dashboard #climateChartContainer {
+    width: 100%;
+    height: 245px;
+    position: relative;
+}
+
+.climate-dashboard #climateTrendChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.climate-dashboard #climateChartEmpty {
+    min-height: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 20px;
+
+    color: #8195aa;
+    text-align: center;
+    font-size: 11px;
+
+    border: 1px dashed rgba(148, 176, 203, 0.17);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.climate-dashboard #climateChartEmpty[hidden] {
+    display: none !important;
+}
+
+
+/* =========================
+   13. ENSO STATUS PANEL
+========================= */
+
+.climate-dashboard .enso-panel {
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 35%,
+            rgba(43, 156, 153, 0.12),
+            transparent 48%
+        ),
+        linear-gradient(
+            145deg,
+            #11283a,
+            #101e31
+        );
+}
+
+.climate-dashboard .enso-panel::after {
+    content: "";
+
+    position: absolute;
+    right: -80px;
+    bottom: -105px;
+
+    width: 230px;
+    height: 230px;
+
+    border: 1px solid rgba(94, 225, 207, 0.09);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 25px rgba(94, 225, 207, 0.018),
+        0 0 0 55px rgba(94, 225, 207, 0.012);
+
+    pointer-events: none;
+}
+
+.climate-dashboard .enso-symbol {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--accent);
+    font-size: 15px;
+
+    border: 1px solid rgba(57, 214, 194, 0.18);
+    border-radius: 9px;
+
+    background: rgba(57, 214, 194, 0.08);
+}
+
+.climate-dashboard .enso-visual {
+    min-height: 170px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.climate-dashboard .enso-ring {
+    position: absolute;
+
+    border-radius: 50%;
+    border: 1px solid rgba(94, 225, 207, 0.15);
+}
+
+.climate-dashboard .ring-outer {
+    width: 155px;
+    height: 155px;
+
+    border-style: dashed;
+    animation: orbitRotate 40s linear infinite;
+}
+
+.climate-dashboard .ring-inner {
+    width: 122px;
+    height: 122px;
+
+    border-color: rgba(94, 225, 207, 0.24);
+    box-shadow:
+        0 0 28px rgba(57, 214, 194, 0.055),
+        inset 0 0 24px rgba(57, 214, 194, 0.035);
+}
+
+.climate-dashboard .enso-center {
+    width: 92px;
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+
+    position: relative;
+    z-index: 2;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #245d69,
+            #123747 65%,
+            #0c2738
+        );
+
+    border: 1px solid rgba(113, 239, 218, 0.25);
+
+    box-shadow:
+        0 0 32px rgba(57, 214, 194, 0.12),
+        inset 0 1px 12px rgba(130, 242, 219, 0.10);
+}
+
+.climate-dashboard .enso-center strong {
+    color: #8af0dc;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.climate-dashboard .enso-center span {
+    color: #a0c4c8;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.climate-dashboard .enso-status-box {
+    position: relative;
+    z-index: 2;
+
+    padding: 13px 14px;
+
+    border: 1px solid rgba(125, 209, 195, 0.13);
+    border-radius: 11px;
+
+    background: rgba(5, 18, 31, 0.38);
+}
+
+.climate-dashboard .enso-status-box strong {
+    display: block;
+    margin-bottom: 6px;
+
+    color: #e3f2f0;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.climate-dashboard .enso-status-box p {
+    margin: 0;
+
+    color: #8ca7b2;
+    font-size: 9px;
+    line-height: 1.7;
+}
+
+.climate-dashboard .status-indicator {
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+    background: var(--accent);
+
+    box-shadow: 0 0 9px rgba(57, 214, 194, 0.5);
+}
+
+.climate-dashboard .panel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    position: relative;
+    z-index: 2;
+
+    margin-top: 15px;
+
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 700;
+
+    transition: gap var(--transition);
+}
+
+.climate-dashboard .panel-link:hover {
+    gap: 13px;
+}
+
+
+/* =========================
+   14. PANEL ANIMATIONS
+========================= */
+
+.climate-dashboard .metric-card,
+.climate-dashboard .panel {
+    animation: dashboardReveal 0.55s ease both;
+}
+
+.climate-dashboard .metric-card:nth-child(2) {
+    animation-delay: 0.07s;
+}
+
+.climate-dashboard .metric-card:nth-child(3) {
+    animation-delay: 0.14s;
+}
+
+.climate-dashboard .metric-card:nth-child(4) {
+    animation-delay: 0.21s;
+}
+
+.climate-dashboard .analytics-grid .panel:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+/* =========================================================
+   EL NINO AI — PREMIUM CLIMATE INTELLIGENCE DASHBOARD
+   PART 3/3 — MODULES, SYSTEM, LOCATION MODAL & RESPONSIVE
+========================================================= */
+
+
+/* =========================
+   15. ANALYSIS MODULES
+========================= */
+
+.climate-dashboard .modules-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-bottom: 19px;
+}
+
+.climate-dashboard .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+
+    margin-bottom: 37px;
+}
+
+.climate-dashboard .module-card {
+    min-height: 155px;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 19px;
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19, 36, 56, 0.96),
+            rgba(12, 25, 42, 0.98)
+        );
+
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        background var(--transition),
+        box-shadow var(--transition);
+}
+
+.climate-dashboard .module-card::after {
+    content: "";
+
+    position: absolute;
+    top: -45px;
+    right: -45px;
+
+    width: 105px;
+    height: 105px;
+
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 50%;
+
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0.015);
+
+    transition: transform 0.5s ease;
+}
+
+.climate-dashboard .module-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(92, 211, 198, 0.27);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23, 47, 67, 0.98),
+            rgba(14, 31, 49, 0.99)
+        );
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.climate-dashboard .module-card:hover::after {
+    transform: scale(1.3);
+}
+
+.climate-dashboard .module-icon {
+    width: 39px;
+    height: 39px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 15px;
+
+    font-size: 17px;
+
+    border: 1px solid transparent;
+    border-radius: 11px;
+}
+
+.climate-dashboard .module-teal {
+    color: #5ce4cd;
+    background: rgba(57, 214, 194, 0.11);
+    border-color: rgba(57, 214, 194, 0.14);
+}
+
+.climate-dashboard .module-blue {
+    color: #7bb7ff;
+    background: rgba(90, 156, 255, 0.11);
+    border-color: rgba(90, 156, 255, 0.14);
+}
+
+.climate-dashboard .module-green {
+    color: #7be0a9;
+    background: rgba(85, 214, 154, 0.11);
+    border-color: rgba(85, 214, 154, 0.14);
+}
+
+.climate-dashboard .module-orange {
+    color: #ffb77f;
+    background: rgba(255, 173, 112, 0.11);
+    border-color: rgba(255, 173, 112, 0.14);
+}
+
+.climate-dashboard .module-purple {
+    color: #c0a2ff;
+    background: rgba(167, 139, 250, 0.11);
+    border-color: rgba(167, 139, 250, 0.14);
+}
+
+.climate-dashboard .module-cyan {
+    color: #69d9ef;
+    background: rgba(84, 217, 237, 0.11);
+    border-color: rgba(84, 217, 237, 0.14);
+}
+
+.climate-dashboard .module-card h3 {
+    margin: 0 0 7px;
+
+    color: #e6eff8;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.climate-dashboard .module-card p {
+    max-width: 260px;
+
+    margin: 0;
+
+    color: #8296ac;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.climate-dashboard .module-arrow {
+    position: absolute;
+    right: 19px;
+    bottom: 18px;
+
+    color: #718ba1;
+    font-size: 15px;
+
+    transition:
+        color var(--transition),
+        transform var(--transition);
+}
+
+.climate-dashboard .module-card:hover .module-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+}
+
+.climate-dashboard .module-link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    border-radius: inherit;
+}
+
+
+/* =========================
+   16. BOTTOM INFORMATION
+========================= */
+
+.climate-dashboard .bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: 17px;
+
+    margin-bottom: 32px;
+}
+
+.climate-dashboard .system-panel,
+.climate-dashboard .about-panel {
+    min-width: 0;
+    padding: 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17, 32, 51, 0.97),
+            rgba(12, 24, 40, 0.98)
+        );
+
+    box-shadow: var(--shadow-panel);
+}
+
+.climate-dashboard .system-panel h3,
+.climate-dashboard .about-panel h3 {
+    margin: 0;
+
+    color: #eaf2fa;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.climate-dashboard .system-ready-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 10px;
+
+    color: #80ddb2;
+    font-size: 9px;
+    font-weight: 700;
+
+    border: 1px solid rgba(85, 214, 154, 0.17);
+    border-radius: 7px;
+
+    background: rgba(85, 214, 154, 0.07);
+}
+
+.climate-dashboard .system-ready-tag::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+    background: var(--green);
+}
+
+.climate-dashboard .system-row {
+    min-height: 53px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid rgba(166, 190, 218, 0.075);
+}
+
+.climate-dashboard .system-row:last-child {
+    border-bottom: 0;
+}
+
+.climate-dashboard .system-row-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: #73d9c8;
+    font-size: 13px;
+
+    border-radius: 9px;
+    background: rgba(57, 214, 194, 0.085);
+}
+
+.climate-dashboard .system-row > div {
+    min-width: 0;
+    flex: 1;
+}
+
+.climate-dashboard .system-row strong {
+    display: block;
+
+    color: #dce7f1;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.climate-dashboard .system-row p {
+    margin: 4px 0 0;
+
+    color: #71869c;
+    font-size: 9px;
+}
+
+.climate-dashboard .row-status {
+    flex-shrink: 0;
+
+    color: #6fd8a5;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.climate-dashboard .pending-status {
+    color: #e6b77c;
+}
+
+.climate-dashboard .pending-icon {
+    color: #e6b77c;
+    background: rgba(230, 183, 124, 0.09);
+}
+
+
+/* =========================
+   17. ABOUT PANEL
+========================= */
+
+.climate-dashboard .about-panel {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(66, 132, 177, 0.14),
+            transparent 48%
+        ),
+        linear-gradient(
+            145deg,
+            #13283d,
+            #101d30
+        );
+}
+
+.climate-dashboard .about-icon {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 17px;
+
+    color: var(--accent);
+    font-size: 18px;
+
+    border: 1px solid rgba(57, 214, 194, 0.17);
+    border-radius: 12px;
+
+    background: rgba(57, 214, 194, 0.09);
+}
+
+.climate-dashboard .about-panel p {
+    margin: 12px 0 18px;
+
+    color: #91a6b9;
+    font-size: 10px;
+    line-height: 1.85;
+}
+
+.climate-dashboard .about-panel a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 700;
+
+    transition: gap var(--transition);
+}
+
+.climate-dashboard .about-panel a:hover {
+    gap: 13px;
+}
+
+
+/* =========================
+   18. DASHBOARD FOOTER
+========================= */
+
+.climate-dashboard .dashboard-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    padding: 19px 0 5px;
+
+    border-top: 1px solid var(--border);
+
+    color: #667b91;
+    font-size: 9px;
+}
+
+.climate-dashboard .dashboard-footer strong {
+    color: #9bb1c4;
+    font-weight: 700;
+}
+
+
+/* =========================
+   19. LOCATION PICKER MODAL
+========================= */
+
+/* Hidden attribute must always work */
+
+.climate-dashboard #locationPickerModal[hidden] {
+    display: none !important;
+}
+
+.climate-dashboard #locationPickerModal:not([hidden]) {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 22px;
+}
+
+.climate-dashboard .location-modal-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(2, 8, 17, 0.82);
+
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+
+    animation: modalBackdropIn 0.25s ease both;
+}
+
+.climate-dashboard .location-modal-card {
+    width: min(760px, 100%);
+    max-height: min(90vh, 850px);
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(117, 202, 198, 0.2);
+    border-radius: 21px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #13263b,
+            #0c192a
+        );
+
+    box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.55),
+        0 0 45px rgba(57, 214, 194, 0.045);
+
+    animation: modalCardIn 0.3s ease both;
+}
+
+.climate-dashboard .location-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 22px 24px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.climate-dashboard .location-modal-header h2 {
+    margin: 0;
+
+    color: #eef6fc;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.climate-dashboard .location-modal-header p {
+    margin: 6px 0 0;
+
+    color: #8298ae;
+    font-size: 10px;
+}
+
+.climate-dashboard #closeLocationPickerButton {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    color: #a9bacb;
+    font-size: 17px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    transition: var(--transition);
+}
+
+.climate-dashboard #closeLocationPickerButton:hover {
+    color: #ff9696;
+    background: rgba(255, 100, 100, 0.09);
+    border-color: rgba(255, 100, 100, 0.2);
+}
+
+/* Search form */
+
+.climate-dashboard #locationSearchForm {
+    display: flex;
+    gap: 10px;
+
+    padding: 18px 24px 12px;
+}
+
+.climate-dashboard #locationSearchInput {
+    min-width: 0;
+    flex: 1;
+
+    height: 43px;
+    padding: 0 14px;
+
+    color: #e7f0f8;
+    font-size: 11px;
+
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+
+    outline: none;
+    background: rgba(4, 15, 28, 0.55);
+
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.climate-dashboard #locationSearchInput::placeholder {
+    color: #6e8298;
+}
+
+.climate-dashboard #locationSearchInput:focus {
+    border-color: rgba(57, 214, 194, 0.55);
+    box-shadow: 0 0 0 3px rgba(57, 214, 194, 0.08);
+}
+
+.climate-dashboard #locationSearchButton {
+    min-width: 95px;
+    height: 43px;
+
+    padding: 0 15px;
+
+    color: #06241f;
+    font-size: 10px;
+    font-weight: 800;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: linear-gradient(135deg, #83f0d9, #45cdbb);
+
+    transition: var(--transition);
+}
+
+.climate-dashboard #locationSearchButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(57, 214, 194, 0.17);
+}
+
+.climate-dashboard #locationSearchMessage {
+    min-height: 17px;
+
+    margin: 0;
+    padding: 0 24px 9px;
+
+    color: #e5b77c;
+    font-size: 10px;
+}
+
+.climate-dashboard #locationSearchResults {
+    max-height: 350px !important;
+    min-height: 0;
+    overflow-y: auto !important;
+    padding: 8px 24px;
+}
+
+.climate-dashboard #locationSearchResults:empty {
+    display: none;
+}
+
+/* Map */
+
+.climate-dashboard #locationMap {
+    width: calc(100% - 48px);
+    height: 300px;
+    min-height: 220px;
+
+    margin: 5px 24px 15px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(132, 182, 201, 0.2);
+    border-radius: 13px;
+
+    background: #13283a;
+    z-index: 1;
+}
+
+.climate-dashboard #locationMap .leaflet-container {
+    font-family: "DM Sans", sans-serif;
+}
+
+.climate-dashboard #locationMap .leaflet-control-zoom a {
+    color: #eaf5f8;
+    background: #12283a;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.climate-dashboard #locationMap .leaflet-control-zoom a:hover {
+    color: var(--accent);
+    background: #1b394b;
+}
+
+.climate-dashboard .map-attribution {
+    padding: 0 24px;
+
+    color: #71869b;
+    font-size: 9px;
+}
+
+.climate-dashboard .selected-location-info {
+    margin: 12px 24px 0;
+    padding: 12px 14px;
+
+    border: 1px solid rgba(57, 214, 194, 0.15);
+    border-radius: 10px;
+
+    background: rgba(57, 214, 194, 0.055);
+}
+
+.climate-dashboard .selected-location-info strong {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #a6e8dc;
+    font-size: 10px;
+}
+
+.climate-dashboard #selectedLocationDetails {
+    margin: 0;
+
+    color: #91a7b9;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.climate-dashboard #saveSelectedLocation {
+    min-height: 42px;
+
+    align-self: flex-end;
+
+    margin: 14px 24px 20px;
+    padding: 0 19px;
+
+    color: #06241f;
+    font-size: 10px;
+    font-weight: 800;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: linear-gradient(135deg, #83f0d9, #45cdbb);
+
+    transition: var(--transition);
+}
+
+.climate-dashboard #saveSelectedLocation:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(57, 214, 194, 0.2);
+}
+
+
+/* =========================
+   20. MODAL ANIMATIONS
+========================= */
+
+@keyframes modalBackdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================
+   21. TABLET RESPONSIVENESS
+========================= */
+
+@media (max-width: 1150px) {
+
+    .climate-dashboard .dashboard-content {
+        padding-left: 27px;
+        padding-right: 27px;
+    }
+
+    .climate-dashboard .dashboard-topbar {
+        padding-left: 27px;
+        padding-right: 27px;
+    }
+
+    .climate-dashboard .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .climate-dashboard .analytics-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.85fr);
+    }
+
+    .climate-dashboard .welcome-section {
+        padding: 32px;
+    }
+
+    .climate-dashboard .welcome-visual {
+        width: 220px;
+    }
+}
+
+
+/* =========================
+   22. SMALL TABLETS
+========================= */
+
+@media (max-width: 900px) {
+
+    .climate-dashboard {
+        --sidebar-width: 0px;
+    }
+
+    .climate-dashboard .dashboard-sidebar {
+        width: 258px;
+        transform: translateX(-100%);
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .climate-dashboard .dashboard-layout.sidebar-open .dashboard-sidebar {
+        transform: translateX(0);
+    }
+
+    .climate-dashboard .dashboard-main {
+        margin-left: 0;
+    }
+
+    .climate-dashboard .dashboard-layout.sidebar-collapsed .dashboard-sidebar {
+        width: 258px;
+    }
+
+    .climate-dashboard .dashboard-layout.sidebar-collapsed .dashboard-brand strong,
+    .climate-dashboard .dashboard-layout.sidebar-collapsed .dashboard-brand small,
+    .climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-section-label,
+    .climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-link span:not(.nav-icon),
+    .climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-help,
+    .climate-dashboard .dashboard-layout.sidebar-collapsed .sidebar-logout span {
+        display: initial;
+    }
+
+    .climate-dashboard .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .climate-dashboard .enso-panel {
+        min-height: 320px;
+    }
+
+    .climate-dashboard .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================
+   23. MOBILE RESPONSIVENESS
+========================= */
+
+@media (max-width: 600px) {
+
+    .climate-dashboard .dashboard-topbar {
+        height: 65px;
+        padding: 0 15px;
+    }
+
+    .climate-dashboard .topbar-left {
+        gap: 10px;
+    }
+
+    .climate-dashboard .topbar-right {
+        gap: 9px;
+    }
+
+    .climate-dashboard .breadcrumb {
+        font-size: 10px;
+    }
+
+    .climate-dashboard .system-indicator {
+        display: none;
+    }
+
+    .climate-dashboard .profile-divider {
+        display: none;
+    }
+
+    .climate-dashboard .profile-details {
+        display: none;
+    }
+
+    .climate-dashboard .dashboard-content {
+        padding: 20px 15px 25px;
+    }
+
+    .climate-dashboard .welcome-section {
+        min-height: auto;
+
+        padding: 27px 22px;
+
+        align-items: flex-start;
+        flex-direction: column;
+
+        border-radius: 18px;
+    }
+
+    .climate-dashboard .welcome-copy h1 {
+        font-size: 29px;
+        letter-spacing: -1.1px;
+    }
+
+    .climate-dashboard .welcome-copy p {
+        font-size: 11px;
+    }
+
+    .climate-dashboard .welcome-visual {
+        width: 100%;
+        height: 175px;
+    }
+
+    .climate-dashboard .visual-globe {
+        width: 115px;
+        height: 115px;
+    }
+
+    .climate-dashboard .visual-orbit {
+        width: 160px;
+        height: 160px;
+    }
+
+    .climate-dashboard .visual-caption {
+        right: 50%;
+        bottom: 0;
+        transform: translateX(50%);
+        white-space: nowrap;
+    }
+
+    .climate-dashboard .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .climate-dashboard .location-picker {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .climate-dashboard .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .climate-dashboard .metric-card {
+        min-height: 160px;
+        padding: 15px 13px;
+    }
+
+    .climate-dashboard .metric-value {
+        font-size: 23px;
+    }
+
+    .climate-dashboard .metric-text-value {
+        font-size: 18px;
+    }
+
+    .climate-dashboard .metric-label {
+        font-size: 9px;
+    }
+
+    .climate-dashboard .analytics-grid {
+        gap: 12px;
+    }
+
+    .climate-dashboard .panel {
+        padding: 17px;
+    }
+
+    .climate-dashboard .panel-heading {
+        flex-wrap: wrap;
+    }
+
+    .climate-dashboard .trend-panel {
+        min-height: 330px;
+    }
+
+    .climate-dashboard #climateChartContainer {
+        height: 220px;
+    }
+
+    .climate-dashboard .modules-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .climate-dashboard .module-card {
+        min-height: 165px;
+        padding: 14px;
+    }
+
+    .climate-dashboard .module-card h3 {
+        font-size: 11px;
+    }
+
+    .climate-dashboard .module-card p {
+        font-size: 9px;
+    }
+
+    .climate-dashboard .bottom-grid {
+        gap: 12px;
+    }
+
+    .climate-dashboard .system-panel,
+    .climate-dashboard .about-panel {
+        padding: 17px;
+    }
+
+    .climate-dashboard .dashboard-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        line-height: 1.7;
+    }
+
+    .climate-dashboard #locationPickerModal:not([hidden]) {
+        padding: 10px;
+    }
+
+    .climate-dashboard .location-modal-card {
+        max-height: 94vh;
+        border-radius: 15px;
+    }
+
+    .climate-dashboard .location-modal-header {
+        padding: 16px;
+    }
+
+    .climate-dashboard #locationSearchForm {
+        padding: 14px 16px 10px;
+    }
+
+    .climate-dashboard #locationSearchMessage {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .climate-dashboard #locationSearchResults {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .climate-dashboard #locationMap {
+        width: calc(100% - 32px);
+        height: 245px;
+        margin: 5px 16px 12px;
+    }
+
+    .climate-dashboard .map-attribution {
+        padding: 0 16px;
+    }
+
+    .climate-dashboard .selected-location-info {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .climate-dashboard #saveSelectedLocation {
+        margin-right: 16px;
+        margin-bottom: 16px;
+    }
+}
+
+
+/* =========================
+   24. VERY SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+
+    .climate-dashboard .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .climate-dashboard .modules-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .climate-dashboard .welcome-copy h1 {
+        font-size: 25px;
+    }
+
+    .climate-dashboard .welcome-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .climate-dashboard .primary-action,
+    .climate-dashboard .secondary-action {
+        width: 100%;
+    }
+
+    .climate-dashboard .language-switcher select {
+        max-width: 75px;
+    }
+}
+
+
+/* =========================
+   END OF PART 3
+   DASHBOARD CSS COMPLETE
+========================= */
+/* Multilingual Vector Map */
+
+#locationMap {
+    width: 100%;
+    height: 420px;
+    min-height: 420px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+#locationMap .maplibregl-ctrl-group {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#locationMap .maplibregl-ctrl button {
+    cursor: pointer;
+}
+/* EL NINO AI — PREMIUM FIORD MAP */
+
+#locationMap {
+    width: 100%;
+    height: 460px;
+    min-height: 460px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #071522;
+    border: 1px solid rgba(77, 190, 220, 0.28);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+#locationMap .maplibregl-ctrl-group {
+    background: #0b2032;
+    border: 1px solid rgba(91, 197, 220, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#locationMap .maplibregl-ctrl-group button {
+    width: 40px;
+    height: 40px;
+}
+
+#locationMap .maplibregl-ctrl-group button:hover {
+    background: #153b50;
+}
+
+#locationMap .maplibregl-ctrl-attrib {
+    background: rgba(5, 18, 31, 0.9);
+    color: #c1dce8;
+}
+
+#locationMap .maplibregl-popup-content {
+    background: #0b2032;
+    color: #e8f7ff;
+    border: 1px solid #287b96;
+    border-radius: 12px;
+    padding: 13px 17px;
+}
+
+#locationMap .maplibregl-popup-close-button {
+    color: #55d5e5;
+}
+/* ============================================
+   WORKSPACE SIDEBAR MENU TOGGLE
+============================================ */
+
+@media (min-width: 951px) {
+
+    .dashboard-layout.sidebar-collapsed
+    .dashboard-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .dashboard-layout.sidebar-collapsed
+    .dashboard-main {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+
+    .dashboard-sidebar {
+        transition: transform 0.3s ease;
+    }
+
+    .dashboard-main {
+        transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+
+}
+
+@media (max-width: 950px) {
+
+    .dashboard-sidebar.sidebar-open {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+}
+/* Desktop Sidebar Collapse */
+
+@media (min-width: 951px) {
+
+    #dashboardSidebar.sidebar-collapsed {
+        transform: translateX(-100%);
+        margin-left: -260px;
+        transition: all 0.3s ease;
+    }
+
+}
+
+/* Mobile Sidebar */
+
+@media (max-width: 950px) {
+
+    #dashboardSidebar {
+        transition: transform 0.3s ease;
+    }
+
+    #dashboardSidebar.sidebar-open {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+}
+/* =========================================
+   PREMIUM LOCATION SEARCH RESULTS
+========================================= */
+
+#searchResults {
+    display: none;
+    width: 100%;
+    max-height: 480px;
+    overflow-y: auto;
+    margin-top: 14px;
+    padding: 10px;
+    background: #081525;
+    border: 1px solid rgba(53, 224, 189, 0.25);
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    scrollbar-width: thin;
+    scrollbar-color: #35e0bd #081525;
+}
+
+#searchResults .location-search-result {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    width: 100%;
+    min-height: 100px;
+    padding: 17px 19px;
+    margin-bottom: 9px;
+    text-align: left;
+    background: #102238;
+    border: 1px solid rgba(104, 168, 255, 0.16);
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.25s ease;
+}
+
+#searchResults .location-result-name {
+    color: #35e0bd;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+#searchResults .location-result-details {
+    color: #b8c9df;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#searchResults .location-result-region {
+    color: #8198b5;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#searchResults .location-search-result:hover {
+    background: #17334b;
+    border-color: #35e0bd;
+    transform: translateY(-2px);
+}
+
+#searchResults .location-search-result:last-child {
+    margin-bottom: 0;
+}
+
+#searchResults::-webkit-scrollbar {
+    width: 7px;
+}
+
+#searchResults::-webkit-scrollbar-thumb {
+    background: #35e0bd;
+    border-radius: 10px;
+}
+/* =========================================
+   FIX: WHITE EMPTY SEARCH RESULTS BAR
+========================================= */
+
+#searchResults {
+    background: #081525 !important;
+    color: #eaf2ff !important;
+    border: 1px solid rgba(53, 224, 189, 0.25) !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 400px !important;
+    overflow-y: auto !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* No results = no visible bar */
+
+#searchResults:empty {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    margin: 0 !important;
+}
+
+/* Individual results */
+
+#searchResults .location-search-result {
+    background: #102238 !important;
+    color: #eaf2ff !important;
+    min-height: 90px;
+    padding: 16px 18px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(104, 168, 255, 0.2);
+    border-radius: 10px;
+}
+/* FIX LOCATION RESULT WHITE BACKGROUND */
+
+#searchResults .location-search-result {
+    background: #102238 !important;
+    color: #eaf2ff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    min-height: 100px !important;
+    padding: 16px 18px !important;
+    border: 1px solid rgba(53, 224, 189, 0.3) !important;
+    border-radius: 12px !important;
+}
+
+#searchResults .location-result-name {
+    color: #35e0bd !important;
+    background: transparent !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+}
+
+#searchResults .location-result-details {
+    color: #c5d5e8 !important;
+    background: transparent !important;
+    font-size: 14px !important;
+}
+
+#searchResults .location-result-region {
+    color: #91a9c4 !important;
+    background: transparent !important;
+    font-size: 13px !important;
+    display: block !important;
+}
+/* =========================================
+   LOCATION AUTOCOMPLETE — FINAL STYLE
+========================================= */
+
+.climate-dashboard #locationSearchResults,
+.climate-dashboard #searchResults {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 8px;
+    background: #081525 !important;
+    border: 1px solid rgba(53, 224, 189, 0.25);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.climate-dashboard #locationSearchResults .location-search-result,
+.climate-dashboard #searchResults .location-search-result {
+    appearance: none;
+    -webkit-appearance: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    width: 100%;
+    min-height: 85px;
+    margin: 0 0 8px;
+    padding: 15px 18px;
+    color: #eaf2ff !important;
+    text-align: left;
+    font-family: inherit;
+    background: #102238 !important;
+    border: 1px solid rgba(53, 224, 189, 0.25) !important;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.climate-dashboard .location-result-name {
+    color: #35e0bd !important;
+    background: transparent !important;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.climate-dashboard .location-result-details {
+    color: #c5d5e8 !important;
+    background: transparent !important;
+    font-size: 14px;
+}
+
+.climate-dashboard .location-result-region {
+    color: #91a9c4 !important;
+    background: transparent !important;
+    font-size: 13px;
+}
+
+.climate-dashboard #locationSearchResults .location-search-result:hover,
+.climate-dashboard #searchResults .location-search-result:hover {
+    background: #17334b !important;
+    border-color: #35e0bd !important;
+}
+/* LOCATION SEARCH RESULTS - HEIGHT FIX */
+
+.climate-dashboard #locationSearchResults,
+.climate-dashboard #searchResults {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    min-height: 100px !important;
+    max-height: 350px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 10px 12px !important;
+    box-sizing: border-box;
+}
+
+/* Individual suggestions */
+.climate-dashboard .location-search-result {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 75px !important;
+    height: auto !important;
+    margin-bottom: 8px !important;
+    padding: 14px 18px !important;
+    box-sizing: border-box;
+}
